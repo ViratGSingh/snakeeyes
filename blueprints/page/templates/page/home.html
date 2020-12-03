@@ -1,0 +1,115 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Cookie Jar{% endblock %}
+{% block meta_description %}Compete against yourself and others by guessing the
+outcome of a dice roll. Win points and dominate the leaderboard.{% endblock %}
+
+{% block header %}
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{{ url_for('page.home') }}">
+          <img src="{{ url_for('static', filename='images/snake-eyes.jpg') }}"
+               class="img-responsive"
+               width="229" height="50" title="Snake Eyes" alt="Snake Eyes"/>
+        </a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('page.home') }}">Home</a></li>
+            <li><a href="{{ url_for('page.login') }}">Log in</a></li>
+            <li><a href="{{ url_for('page.register') }}">Register</a></li>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+{% block body %}
+  
+  <!-- <div class="container sm-margin-top">
+    <div class="row text-center lg-margin-bottom">
+      <h1>Feeling lucky?</h1>
+      <h3 class="text-muted">
+        Test your luck against the roll of the dice and win today
+      </h3>
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-4">
+        <i class="fa fa-fw fa-4x fa-bullhorn text-primary"></i>
+        <h2>Place bets</h2>
+        <p class="text-muted">Correctly guess the dice's roll.</p>
+        <p>
+          <a href="#" class="btn btn-default">Sign up</a>
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <i class="fa fa-fw fa-4x fa-database text-primary"></i>
+        <h2>Win currency</h2>
+        <p class="text-muted">Gain coins if your guess is correct.</p>
+        <p>
+          <a href="#" class="btn btn-default">Sign up</a>
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <i class="fa fa-fw fa-4x fa-trophy text-primary"></i>
+        <h2>Leaderboard</h2>
+        <p class="text-muted">Compare your results to others.</p>
+        <p>
+          <a href="#" class="btn btn-default">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </div> -->
+
+<div class="row text-center lg-margin-bottom">
+    
+  <h1></h1>
+</div>
+<div class="row text-center lg-margin-bottom">
+  
+  <h1>Cookie Jar</h1>
+    <div class="container">
+      <div class="row">
+        <form  method = "POST">
+          <div class="input-group">
+            <div class="ui-widget" > 
+            <!-- <select name="category" style="height: 35px; float: left; ">
+              {% for category in categories %} 
+                <option> {{category}} </option>
+              {% endfor %}  
+            </select>   -->
+            
+            <input type='text' name="podcast" id='tags' autocomplete="off" class="form-control search-form" placeholder="Scooby Doo" style=" width: 420px;">
+            
+            
+              
+            
+              
+             </div> 
+             
+            <span class="input-group-btn" style="width:40px;">
+              <button id="search-this" type="submit" class="pull-right btn btn-default search-btn">
+                  <i class="fa fa-search"></i>
+              </button>
+            </span>
+            
+          </div>
+          
+        </form>
+        
+      </div> 
+    </div>   
+        
+       
+</div> 
+
+{% endblock %}
