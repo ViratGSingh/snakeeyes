@@ -1,2 +1,2 @@
 # snakeeyes
- A flask app which recommends games from itch.io
+ A flask app which recommends itch.io games.
