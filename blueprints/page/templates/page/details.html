@@ -90,15 +90,15 @@
                     </span>
                     <br> 
                     {% if current_user.is_authenticated %}
-                    <a href="{{ detail[1] }}">
-                      <button type="submit">Page Link</button> 
-                    </a> 
-                    {% else%}
-                    <a href="{{ detail[1] }}">
-                      <form action="/login">
-                      <button type="submit">Log In</button>
-                      </form>                
-                    </a> 
+                        <a href="{{ detail[1] }}">
+                           <button type="submit">Page Link</button> 
+                        </a> 
+                    {% else %}
+                        <a href="{{ detail[1] }}">
+                          <form action="/login">
+                            <button type="submit">Log In</button>
+                          </form>                
+                        </a> 
                     (% endif %)
 
                   </div>
