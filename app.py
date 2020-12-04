@@ -75,6 +75,7 @@ def authentication(app, user_model):
     def load_user(uid):
         return user_model.query.get(uid)
 app=create_app()
+db.create_all()
 if __name__ == "main":
     app.run()
 
