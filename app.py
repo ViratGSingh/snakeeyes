@@ -75,6 +75,7 @@ def authentication(app, user_model):
     def load_user(uid):
         return user_model.query.get(uid)
 app1=create_app()
-
-app1.run(host="localhost", port=42558)
+app1 = Flask(__name__)
+if __name__ == "main":
+    app1.run()
 
