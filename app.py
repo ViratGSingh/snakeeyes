@@ -13,7 +13,7 @@ from extensions import (
     login_manager
 )
 
-
+app = Flask(__name__)
 def create_app(settings_override=None):
     """
     Create a Flask application using the app factory pattern.
@@ -74,8 +74,8 @@ def authentication(app, user_model):
     @login_manager.user_loader
     def load_user(uid):
         return user_model.query.get(uid)
-app1=create_app()
-app1 = Flask(__name__)
+app=create_app()
+
 if __name__ == "main":
-    app1.run()
+    app.run()
 
