@@ -13,3 +13,4 @@ dnspython==2.0.0
 wtforms_components==0.10.4
 wtforms_alchemy==0.17.0
 psycopg2==2.8.6
+pytz==2020.4
