@@ -76,5 +76,5 @@ def authentication(app, user_model):
         return user_model.query.get(uid)
 app1=create_app()
 
-app1.run(host="localhost", port=8000)
+app1.run(host="localhost", port=42558)
 
