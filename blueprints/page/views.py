@@ -83,7 +83,7 @@ def search():
         detail.append(",".join(inputs))
         desc=db.details.find_one({"game_name":saved_game})["game_description"]
         detail.append(desc)
-        return render_template('user/settings.html',detail=detail)
+        return render_template('page/details.html',detail=detail)
         
 
 
