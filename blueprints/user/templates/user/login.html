@@ -24,11 +24,11 @@
           </div>
           <div class="col-md-6">
             <div class="visible-xs visible-sm sm-margin-top"></div>
-            <a href="{{ url_for('user.signup') }}">
-            <button type="submit"class="btn btn-default btn-block">
-              Register
-            </button>  
-            </a>
+            <form action="/signup">
+               <button type="submit"class="btn btn-default btn-block">
+                 Register
+               </button>  
+            </form>
           </div>
         </div>
       {% endcall %}
