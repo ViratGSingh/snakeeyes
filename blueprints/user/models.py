@@ -1,8 +1,6 @@
 import datetime
 from collections import OrderedDict
 from hashlib import md5
-
-import pytz
 from flask import current_app
 from sqlalchemy import or_
 from werkzeug.security import generate_password_hash, check_password_hash
