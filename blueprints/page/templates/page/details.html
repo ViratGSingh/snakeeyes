@@ -1,0 +1,134 @@
+{% extends 'layouts/base.html' %}
+
+
+  
+
+{% block body %}
+  
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="container">
+       
+        
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              
+              <tr>
+                <td>
+                  <div class="card mt-4">
+                    <div class="card-body">
+                     
+                    </div> 
+                  </div>
+                </td>
+                
+                       <h4 class="card-title"></h4>
+                      
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                
+                <td>
+                  <div class="card mt-4">
+                  
+                    <div class="card-body" style="float:left;">
+                      <img src="{{ details[2] }}" width="320" height="320"/>
+                    </div>
+                  </div>  
+                </td>  
+                <td>
+                <div class="card mt-4">
+                  
+                  <div class="card-body" >
+                    
+                   
+                    <h3 class="card-title" id="game" >{{ detail[0] }}</h3>
+                    <span>
+                      <span style="font-size: large;">Developer: </span>
+                      <span style="font-size: larger;">{{detail[7] }}</span> 
+                    </span>
+                    <br>
+                    <span>
+                      <span style="font-size: large;">Published: </span>
+                      <span style="font-size: larger;">{{detail[3] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Tags: </span>
+                      <span style="font-size: larger;">{{detail[9] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Status: </span>
+                      <span style="font-size: larger;">{{detail[4] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Platforms: </span>
+                      <span style="font-size: larger;">{{detail[5] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Rating: </span>
+                      <span style="font-size: larger;">{{detail[6] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Languages: </span>
+                      <span style="font-size: larger;">{{detail[11] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Average Session: </span>
+                      <span style="font-size: larger;">{{detail[10] }}</span> 
+                    </span>
+                    <br> 
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ detail[1] }}">
+                      <button type="submit">Page Link</button> 
+                    </a> 
+                    {% else%}
+                    <a href="{{ detail[1] }}">
+                      <form action="/login">
+                      <button type="submit">Log In</button>
+                      </form> 
+                      
+                    </a> 
+
+                  </div>
+                </div>
+                </td>
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+            
+      
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+   
+  </div>
+  <!-- /.container -->
+
+  
+
+
+
+          
+          
+         
+  </div> 
+{% endblock %}
