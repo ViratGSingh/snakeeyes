@@ -35,7 +35,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     email = db.Column(db.String(255), unique=True, index=True, nullable=False,
                       server_default='')
     password = db.Column(db.String(128), nullable=False, server_default='')
-    saved_game = db.Column(db.String(50), unique=True, index=True)
+ 
 
    
 
