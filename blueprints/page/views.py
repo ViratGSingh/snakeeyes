@@ -6,7 +6,7 @@ import pymongo
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["itchio"]
 
-@page.route('/loaderio-89e5a74c98935e38038b0c14e5c7e883')
+@page.route('/loaderio-89e5a74c98935e38038b0c14e5c7e883/')
 def loader():
     return render_template('page/loaderio-89e5a74c98935e38038b0c14e5c7e883.html')
 @page.route('/',  methods=["GET","POST"])
