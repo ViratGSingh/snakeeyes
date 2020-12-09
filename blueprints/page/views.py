@@ -43,8 +43,10 @@ def search():
         podcast=request.args.get("recommend")
         if podcast:
             
-            
-            recoms=db.recom.find_one({"Key":podcast})
+            podcast=podcast.lower()
+            podcast=podcast.replace("*",".")
+            podcast=podcast.replace("_"," ")
+            recoms=db.recom.find_one({"Key":podcast.lower()})
             users=recoms[podcast][:5]  
             for items in users:
                 name=items[1]
