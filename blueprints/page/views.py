@@ -4,7 +4,7 @@ from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
-db = client["itchio"]
+db = client["steam"]
 
 @page.route('/loaderio-89e5a74c98935e38038b0c14e5c7e883/')
 def loader():
@@ -25,7 +25,7 @@ def home():
                 name=items[1]
                 
                 
-                image_url=db.listings.find_one({"game_name":name})["image_url"]
+                image_url=db.games.find_one({"name":name})["img_url"]
                
                 
                 items.append(image_url)
@@ -50,40 +50,39 @@ def search():
                 name=items[1]
               
                 
-                image_url=db.listings.find_one({"game_name":name})["image_url"]
+                image_url=db.games.find_one({"name":name})["img_url"]
                 items.append(image_url)
             return render_template('page/search.html', 
                                 users=users)    
     elif request.args.get("details"):
         saved_game=request.args.get("details")
         detail=[]
-        name=db.listings.find_one({"game_name":saved_game})["game_name"]
+        name=db.games.find_one({"name":saved_game})["name"]
         detail.append(name)
-        page_l=db.listings.find_one({"game_name":saved_game})["game_link"]
+        page_l=db.games.find_one({"name":saved_game})["link"]
         detail.append(page_l)
-        image_l=db.listings.find_one({"game_name":saved_game})["image_url"]
+        image_l=db.games.find_one({"name":saved_game})["img_url"]
         detail.append(image_l)
-        p_date=db.details.find_one({"game_name":saved_game})["game_published"]
+        p_date=db.games.find_one({"name":saved_game})["release_date"]
         detail.append(p_date)
-        status=db.details.find_one({"game_name":saved_game})["game_status"]
+        status=db.details.find_one({"name":saved_game})["game_status"]
         detail.append(status)
-        platforms=db.details.find_one({"game_name":saved_game})["game_platforms"]
-        detail.append(",".join(platforms))
-        rating=db.details.find_one({"game_name":saved_game})["aggregate_rating"]
-        detail.append(rating)
-        author=db.details.find_one({"game_name":saved_game})["game_author"]
+        # platforms=db.details.find_one({"name":saved_game})["game_platforms"]
+        # detail.append(",".join(platforms))
+        # rating=db.details.find_one({"name":saved_game})["aggregate_rating"]
+        # detail.append(rating)
+        author=db.details.find_one({"name":saved_game})["developer"]
         detail.append(author)
-        engine=db.details.find_one({"game_name":saved_game})["game_engine"]
-        detail.append(engine)
-        tags=db.details.find_one({"game_name":saved_game})["game_tags"]
+        
+        tags=db.details.find_one({"name":saved_game})["tags"]
         detail.append(",".join(tags))
-        avg_session=db.details.find_one({"game_name":saved_game})["game_avg_session"]
+        avg_session=db.details.find_one({"name":saved_game})["min_space"]
         detail.append(avg_session)
-        languages=db.details.find_one({"game_name":saved_game})["game_languages"]
+        languages=db.details.find_one({"name":saved_game})["min_ram"]
         detail.append(",".join(languages)) 
-        inputs=db.details.find_one({"game_name":saved_game})["game_inputs"]
+        inputs=db.details.find_one({"name":saved_game})["price"]
         detail.append(",".join(inputs))
-        desc=db.details.find_one({"game_name":saved_game})["game_description"]
+        desc=db.details.find_one({"name":saved_game})["description"]
         detail.append(desc)
         return render_template('page/details.html',detail=detail)
         
