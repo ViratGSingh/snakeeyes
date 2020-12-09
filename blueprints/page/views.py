@@ -45,7 +45,7 @@ def search():
             
             podcast=podcast.lower()
             podcast=podcast.replace("*",".")
-            podcast=podcast.replace("_"," ")
+            podcast=podcast.replace(" ","_")
             recoms=db.recom.find_one({"Key":podcast.lower()})
             users=recoms[podcast][:5]  
             for items in users:
