@@ -65,24 +65,24 @@ def search():
         detail.append(image_l)
         p_date=db.games.find_one({"name":saved_game})["release_date"]
         detail.append(p_date)
-        status=db.details.find_one({"name":saved_game})["game_status"]
-        detail.append(status)
+        # status=db.games.find_one({"name":saved_game})["game_status"]
+        # detail.append(status)
         # platforms=db.details.find_one({"name":saved_game})["game_platforms"]
         # detail.append(",".join(platforms))
         # rating=db.details.find_one({"name":saved_game})["aggregate_rating"]
         # detail.append(rating)
-        author=db.details.find_one({"name":saved_game})["developer"]
+        author=db.games.find_one({"name":saved_game})["developer"]
         detail.append(author)
         
-        tags=db.details.find_one({"name":saved_game})["tags"]
+        tags=db.games.find_one({"name":saved_game})["tags"]
         detail.append(",".join(tags))
-        avg_session=db.details.find_one({"name":saved_game})["min_space"]
+        avg_session=db.games.find_one({"name":saved_game})["min_space"]
         detail.append(avg_session)
-        languages=db.details.find_one({"name":saved_game})["min_ram"]
+        languages=db.games.find_one({"name":saved_game})["min_ram"]
         detail.append(",".join(languages)) 
-        inputs=db.details.find_one({"name":saved_game})["price"]
+        inputs=db.games.find_one({"name":saved_game})["price"]
         detail.append(",".join(inputs))
-        desc=db.details.find_one({"name":saved_game})["description"]
+        desc=db.games.find_one({"name":saved_game})["description"]
         detail.append(desc)
         return render_template('page/details.html',detail=detail)
         
