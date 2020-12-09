@@ -79,9 +79,9 @@ def search():
         avg_session=db.games.find_one({"name":saved_game})["min_space"]
         detail.append(avg_session)
         languages=db.games.find_one({"name":saved_game})["min_ram"]
-        detail.append(",".join(languages)) 
+        detail.append(languages) 
         inputs=db.games.find_one({"name":saved_game})["price"]
-        detail.append(",".join(inputs))
+        detail.append(inputs)
         desc=db.games.find_one({"name":saved_game})["description"]
         detail.append(desc)
         return render_template('page/details.html',detail=detail)
