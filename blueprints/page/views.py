@@ -24,7 +24,8 @@ def home():
             for items in users:
                 name=items[1]
                 un=name.lower()
-                
+                un=un.replace(".","*")
+                un=un.replace(" ","_")
                 
                 image_url=db.games.find_one({"name":name})["img_url"]
                
@@ -52,10 +53,12 @@ def search():
             users=recoms[podcast][:5]  
             for items in users:
                 name=items[1]
-              
-                
+                un=name.lower()
+                un=un.replace(".","*")
+                un=un.replace(" ","_")
                 image_url=db.games.find_one({"name":name})["img_url"]
                 items.append(image_url)
+                items.append(un)
             return render_template('page/search.html', 
                                 users=users)    
     elif request.args.get("details"):
