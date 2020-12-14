@@ -7,100 +7,37 @@
   
 
   <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-      <div class="container">
-       
-        
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              
-              <tr>
-                <td>
-                  <div class="card mt-4">
-                    <div class="card-body">
-                     
-                    </div> 
-                  </div>
-                </td>
-                
-                       <h4 class="card-title"></h4>
-                      
-                
-              </tr>
-            </thead>
-            <tbody>
-              {%  for user in users %}
-              
-              <tr>
-                
-                <td>
-                  <div class="card mt-4">
-                  
-                    <div class="card-body" style="float:left;">
-                      <img src="{{ user[7] }}" width="190" height="190"/>
-                    </div>
-                  </div>  
-                </td>  
-                <td>
-                <div class="card mt-4">
-                  
-                  <div class="card-body" >
-                    
-                    <!-- <a href= "{{ user[4] }}"> -->
-                      <h3 class="card-title" id="game" >{{ user[1] }}</h3>
-                    <!-- </a> -->
-                    
-                    <span>
-                      <span style="font-size: large;">Developer: </span>
-                      <span style="font-size: larger;">{{user[2] }}</span> 
-                    </span>
-                    <br>
-                    <!-- <h4>Published: {{ user[6] }}</h4> -->
-                    <span>
-                      <span style="font-size: large;">Tags: </span>
-                      <span style="font-size: larger;">{{user[3] }}</span> 
-                    </span>
-                    <br>
-                    <form action="/game">
-                      <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
-                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
-                        
-                      
-                      
-                    </form> 
-        
-                    
-                  </div>
-                </div>
-                </td>
-              </tr>
-              {% endfor %}
-              
-              
-            </tbody>
-          </table>
+{%  for user in users %}
+<div class="col-sm-4">
+  <div class="product-image-wrapper">
+    <div class="single-products">
+      <div class="productinfo text-center">
+        <img src="{{ user[7] }}" alt="" />
+        <h2>$56</h2>
+        <p>{{ user[1] }}</p>
+        <form action="/game">
+          <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
+          <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
+        </form> 
+      </div>
+      <div class="product-overlay">
+        <div class="overlay-content">
+          <h2>$56</h2>
+          <p>{{ user[1] }}</p>
+          <form action="/game">
+            <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
+            <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
+          </form> 
         </div>
-        
       </div>
-            
-      
-
-      </div>
-      <!-- /.col-lg-9 -->
-
-   
+    </div>
+    <div class="choose">
+      <ul class="nav nav-pills nav-justified">
+        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+      </ul>
+    </div>
   </div>
-  <!-- /.container -->
-
-  
-
-
-
-          
-          
-         
-  </div> 
+</div>
+{% endfor %}
 {% endblock %}
