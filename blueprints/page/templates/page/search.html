@@ -36,13 +36,20 @@
               
               <tr>
                 
-                 
                 <td>
-                
+                   
+                </td>  
+                <td>
+                <div class="card mt-4">
+                  
+                    <div class="card-body" style="float:left;">
+                      <img src="{{ user[7] }}" width="190" height="190"/>
+                    </div>
+                  </div>   
                 <div class="card mt-4">
                   
                   <div class="card-body" >
-                    <img src="{{ user[7] }}" width="200" height="200"/>
+                    
                     <!-- <a href= "{{ user[4] }}"> -->
                       <h3 class="card-title" id="game" >{{ user[1] }}</h3>
                     <!-- </a> -->
@@ -60,7 +67,7 @@
                     <br>
                     <form action="/game">
                       <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
-                      <button  type="submit" name="details" value="{{ user[1] }}">More Details</button>
+                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
                         
                       
                       
