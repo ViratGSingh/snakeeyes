@@ -7,39 +7,82 @@
   
 
   <!-- Page Content -->
+  <div class="container">
 
-<div class="col-sm-4">
-  <div class="product-image-wrapper">
-    <div class="single-products">
-      {%  for user in users %}
-      <div class="productinfo text-center">
-        <img src="{{ user[7] }}" alt="" />
-        <h2>$56</h2>
-        <p>{{ user[1] }}</p>
-        <form action="/game">
-          <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
-          <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
-        </form> 
-      </div>
-      <div class="product-overlay">
-        <div class="overlay-content">
-          <h2>$56</h2>
-          <p>{{ user[1] }}</p>
-          <form action="/game">
-            <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
-            <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
-          </form> 
+    <div class="row">
+      <div class="container">
+       
+        
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              
+              <tr>
+                <td>
+                  <div class="card mt-4">
+                    <div class="card-body">
+                     
+                    </div> 
+                  </div>
+                </td>
+                
+                       <h4 class="card-title"></h4>
+                      
+                
+              </tr>
+            </thead>
+            <tbody>
+              {%  for user in users %}
+              
+              <tr>
+                
+                <td>
+                  <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                      <div class="single-products">
+                        <div class="productinfo text-center">
+                          <img src="{{ user[7] }}" alt="" />
+                          <h2>$56</h2>
+                          <p>{{ user[1] }}</p>
+                          <form action="/game">
+                            <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
+                            <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
+                          </form> 
+                        </div>
+                        
+                      
+                    </div>
+                  </div>
+                    
+                    
+                    
+                  
+                </td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
         </div>
+        
       </div>
-    </div>
-    <div class="choose">
-      <ul class="nav nav-pills nav-justified">
-        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-      </ul>
-    </div>
-    {% endfor %}
-  </div>
-</div>
+            
+      
 
+      </div>
+      <!-- /.col-lg-9 -->
+
+   
+  </div>
+  <!-- /.container -->
+
+  
+
+
+
+          
+          
+         
+  </div> 
 {% endblock %}
