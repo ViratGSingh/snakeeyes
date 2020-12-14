@@ -32,7 +32,55 @@
               </tr>
             </thead>
             <tbody>
-              {%  for user in users %}
+              {%  for user in users[:3] %}
+              
+              <tr>
+                
+                <td>
+                  <div class="card mt-4">
+                  
+                    <div class="card-body" style="float:left;">
+                      <img src="{{ user[7] }}" width="190" height="190"/>
+                    </div>
+                  </div>   
+                   
+                </td>  
+                <td>
+                
+                <div class="card mt-4">
+                  
+                  <div class="card-body" >
+                    
+                    <!-- <a href= "{{ user[4] }}"> -->
+                      <h3 class="card-title" id="game" >{{ user[1] }}</h3>
+                    <!-- </a> -->
+                    
+                    <span>
+                      <span style="font-size: large;">Developer: </span>
+                      <span style="font-size: larger;">{{user[2] }}</span> 
+                    </span>
+                    <br>
+                    <!-- <h4>Published: {{ user[6] }}</h4> -->
+                    <span>
+                      <span style="font-size: large;">Tags: </span>
+                      <span style="font-size: larger;">{{user[3] }}</span> 
+                    </span>
+                    <br>
+                    <form action="/game">
+                      <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
+                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
+                        
+                      
+                      
+                    </form> 
+        
+                    
+                  </div>
+                </div>
+                </td>
+              </tr>
+              {% endfor %}
+              {%  for user in users[3:6] %}
               
               <tr>
                 
