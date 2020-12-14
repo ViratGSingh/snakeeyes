@@ -7,10 +7,11 @@
   
 
   <!-- Page Content -->
-{%  for user in users %}
+
 <div class="col-sm-4">
   <div class="product-image-wrapper">
     <div class="single-products">
+      {%  for user in users %}
       <div class="productinfo text-center">
         <img src="{{ user[7] }}" alt="" />
         <h2>$56</h2>
@@ -37,7 +38,8 @@
         <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
       </ul>
     </div>
+    {% endfor %}
   </div>
 </div>
-{% endfor %}
+
 {% endblock %}
