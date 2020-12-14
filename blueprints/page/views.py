@@ -50,7 +50,7 @@ def search():
             podcast=podcast.replace(".","*")
             podcast=podcast.replace(" ","_")
             recoms=db.recom.find_one({"Key":podcast.lower()})
-            users=recoms[podcast][:5]  
+            users=recoms[podcast][:6]  
             for items in users:
                 name=items[1]
                 un=name.lower()
