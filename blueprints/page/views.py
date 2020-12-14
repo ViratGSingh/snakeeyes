@@ -19,7 +19,7 @@ def home():
         for a in recoms:
             name=a["Key"]
             podcast=name.replace(",","_")
-            users=a[podcast][:5]  
+            users=a[podcast][:20]  
             
             for items in users:
                 name=items[1]
