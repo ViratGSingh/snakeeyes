@@ -151,6 +151,7 @@
         
       </div>
     </nav>
+    {% block body %}{% endblock %}
     {% block header %}{% endblock %}
     
   
@@ -164,7 +165,7 @@
             {% endfor %}
           {% endif %}
         {% endwith %}
-        {% block body %}{% endblock %}
+        
       </div>
     
     
