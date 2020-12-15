@@ -11,24 +11,24 @@
   <div class="container" style="padding: 20px;">
 
     <div class="row">
-      
+                {% for user in users %}
                 <div class="col-md-3 col-sm-6">
                 
                     <div class="card-body">
-                      <img src="{{ users[0][7] }}" width="220" height="220"/>
+                      <img src="{{ user[7] }}" width="220" height="220"/>
                     </div>
-                    <h3 class="card-title" id="game" >{{ users[0][1] }}</h3>
+                    <h3 class="card-title" id="game" >{{ user[1] }}</h3>
                    
                     
                     <span>
                       <span style="font-size: large;">Developer: </span>
-                      <span style="font-size: larger;">{{users[0][2] }}</span> 
+                      <span style="font-size: larger;">{{user[2] }}</span> 
                     </span>
                     <br>
                     
                     <span>
                       <span style="font-size: large;">Date: </span>
-                      <span style="font-size: larger;">{{users[0][4] }}</span> 
+                      <span style="font-size: larger;">{{user[4] }}</span> 
                     </span>
                     <br>
                     <!-- <span>
@@ -37,17 +37,17 @@
                     </span>
                     <br> -->
                     <form action="/game">
-                      <button type="submit" name="recommend" value="{{ users[0][8] }}">Recommend</button>
-                      <button style="float: inline-end;" type="submit" name="details" value="{{ users[0][1] }}">More Details</button>
+                      <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
+                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
                         
                       
                       
                     </form> 
-        
+          
                     
                  
                 </div>
-                
+                {% endfor %}
               
               
   
