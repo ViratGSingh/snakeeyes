@@ -36,6 +36,59 @@ def home():
 
             return render_template('page/search.html', 
                                 users=users)
+@page.route('/tier',  methods=["GET","POST"])
+def tier():
+    if request.method=="POST":
+        game=request.form["submit"]
+        return redirect(url_for("page.search",game=game))
+    else:    
+        if request.args.get("tier")=="ht":
+            recoms=db.iht_recom.aggregate([ { "$sample": { "size": 1 } } ])
+            for a in recoms:
+                name=a["Key"]
+                podcast=name.replace(",","_")
+                users=a[podcast][:6]  
+                
+                for items in users:
+                    name=items[1]
+                    un=name.lower()
+                    un=un.replace(".","*")
+                    un=un.replace(" ","_")
+                    un=un.replace("$","*")
+                    
+                    image_url=db.games.find_one({"indie":name})["img_url"]
+                
+                    
+                    items.append(image_url)
+                    items.append(un)
+            
+
+                return render_template('page/search.html', 
+                                    users=users)  
+        elif request.args.get("tier")=="lt":
+            recoms=db.ilt_recom.aggregate([ { "$sample": { "size": 1 } } ])
+            for a in recoms:
+                name=a["Key"]
+                podcast=name.replace(",","_")
+                users=a[podcast][:6]  
+                
+                for items in users:
+                    name=items[1]
+                    un=name.lower()
+                    un=un.replace(".","*")
+                    un=un.replace(" ","_")
+                    un=un.replace("$","*")
+                    
+                    image_url=db.games.find_one({"indie":name})["img_url"]
+                
+                    
+                    items.append(image_url)
+                    items.append(un)
+            
+
+                return render_template('page/search.html', 
+                                    users=users) 
+
 
 @page.route("/game",  methods=["GET","POST"])
 
