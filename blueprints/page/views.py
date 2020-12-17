@@ -15,7 +15,7 @@ def home():
         game=request.form["submit"]
         return redirect(url_for("page.search",game=game))
     else:    
-        recoms=db.recom.aggregate([ { "$sample": { "size": 1 } } ])
+        recoms=db.ilt_recom.aggregate([ { "$sample": { "size": 1 } } ])
         for a in recoms:
             name=a["Key"]
             podcast=name.replace(",","_")
@@ -56,7 +56,7 @@ def tier():
                     un=un.replace(" ","_")
                     un=un.replace("$","*")
                     
-                    image_url=db.games.find_one({"indie":name})["img_url"]
+                    image_url=db.games.find_one({"name":name})["img_url"]
                 
                     
                     items.append(image_url)
@@ -79,7 +79,7 @@ def tier():
                     un=un.replace(" ","_")
                     un=un.replace("$","*")
                     
-                    image_url=db.games.find_one({"indie":name})["img_url"]
+                    image_url=db.indie.find_one({"name":name})["img_url"]
                 
                     
                     items.append(image_url)
