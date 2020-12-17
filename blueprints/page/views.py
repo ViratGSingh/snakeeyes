@@ -27,7 +27,7 @@ def home():
                 un=un.replace(".","*")
                 un=un.replace(" ","_")
                 
-                image_url=db.games.find_one({"name":name})["img_url"]
+                image_url=db.indie.find_one({"name":name})["img_url"]
                
                 
                 items.append(image_url)
