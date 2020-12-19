@@ -44,7 +44,7 @@ def search():
             codes=game.split(",")
             t_code=int(codes[0])
             r_code=int(codes[1])
-            r=db.indie.find({'$and':[{"tag_code":{'$lte':t_code}}]}).sort([("tag_code", -1), ("rating_code", -1)]).limit(5)
+            r=db.indie.find({'$and':[{"tag_code":{'$lte':t_code}},{"rating_code":{'$lte':r_code}}]}).limit(5)
             games=[]
             for a in r:
                 name=a["name"]
