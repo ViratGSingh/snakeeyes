@@ -23,7 +23,7 @@ def home():
             r_date=a["release_date"]
             dev=a["developer"]
             t_tags=a["top_tags"]
-            tr_code=str(a["tag_code"])+'+'+str(a["rating_code"])
+            tr_code=str(a["tag_code"])+','+str(a["rating_code"])
             
             games.append([name,i_url,r_date,dev,t_tags,tr_code])
             
@@ -39,24 +39,26 @@ def search():
    
               
     if request.args.get("recommend"):
-        podcast=request.args.get("recommend")
-        if podcast:
-            
-            podcast=podcast.lower()
-            podcast=podcast.replace(".","*")
-            podcast=podcast.replace(" ","_")
-            recoms=db.recom.find_one({"Key":podcast.lower()})
-            users=recoms[podcast][:6]  
-            for items in users:
-                name=items[1]
-                un=name.lower()
-                un=un.replace(".","*")
-                un=un.replace(" ","_")
-                image_url=db.games.find_one({"name":name})["img_url"]
-                items.append(image_url)
-                items.append(un)
+        game=request.args.get("recommend")
+        if game:
+            codes=game.split(",")
+            t_code=int(codes[0])
+            r_code=int(codes[1])
+            r=db.indie.find({'$and':[{"tag_code":{'$lte':t_code}},{"rating_code":{'$lte':r_code}}]}).sort([("tag_code", -1), ("rating_code", -1)]).limit(5)
+            games=[]
+            for a in r:
+                name=a["name"]
+                i_url=a["img_url"]
+                r_date=a["release_date"]
+                dev=a["developer"]
+                t_tags=a["top_tags"]
+                tr_code=str(a["tag_code"])+','+str(a["rating_code"])
+                
+                games.append([name,i_url,r_date,dev,t_tags,tr_code])
+
+               
             return render_template('page/search.html', 
-                                users=users)    
+                                games=games)    
     elif request.args.get("details"):
         saved_game=request.args.get("details")
         detail=[]
