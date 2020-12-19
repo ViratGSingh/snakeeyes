@@ -15,79 +15,22 @@ def home():
         game=request.form["submit"]
         return redirect(url_for("page.search",game=game))
     else:    
-        recoms=db.ilt_recom.aggregate([ { "$sample": { "size": 1 } } ])
+        recoms=db.indie.aggregate([ { "$sample": { "size": 6 } } ])
+        games=[]
         for a in recoms:
-            name=a["Key"]
-            podcast=name.replace(",","_")
-            users=a[podcast][:6]  
+            name=a["name"]
+            i_url=a["img_url"]
+            r_date=a["release_date"]
+            dev=a["developer"]
+            t_tags=a["top_tags"]
+            tr_code=str(a["tag_code"])+'+'+str(a["rating_code"])
             
-            for items in users:
-                name=items[1]
-                un=name.lower()
-                un=un.replace(".","*")
-                un=un.replace(" ","_")
-                
-                image_url=db.indie.find_one({"name":name})["img_url"]
-               
-                
-                items.append(image_url)
-                items.append(un)
-        
+            games.append([name,i_url,r_Date,dev,t_tags,tr_code])
+            
+            
 
             return render_template('page/search.html', 
-                                users=users)
-@page.route('/tier',  methods=["GET","POST"])
-def tier():
-    if request.method=="POST":
-        game=request.form["submit"]
-        return redirect(url_for("page.search",game=game))
-    else:    
-        if request.args.get("tier")=="ht":
-            recoms=db.iht_recom.aggregate([ { "$sample": { "size": 1 } } ])
-            for a in recoms:
-                name=a["Key"]
-                podcast=name.replace(",","_")
-                users=a[podcast][:6]  
-                
-                for items in users:
-                    name=items[1]
-                    un=name.lower()
-                    un=un.replace(".","*")
-                    un=un.replace(" ","_")
-                    un=un.replace("$","*")
-                    
-                    image_url=db.games.find_one({"name":name})["img_url"]
-                
-                    
-                    items.append(image_url)
-                    items.append(un)
-            
-
-                return render_template('page/search.html', 
-                                    users=users)  
-        elif request.args.get("tier")=="lt":
-            recoms=db.ilt_recom.aggregate([ { "$sample": { "size": 1 } } ])
-            for a in recoms:
-                name=a["Key"]
-                podcast=name.replace(",","_")
-                users=a[podcast][:6]  
-                
-                for items in users:
-                    name=items[1]
-                    un=name.lower()
-                    un=un.replace(".","*")
-                    un=un.replace(" ","_")
-                    un=un.replace("$","*")
-                    
-                    image_url=db.indie.find_one({"name":name})["img_url"]
-                
-                    
-                    items.append(image_url)
-                    items.append(un)
-            
-
-                return render_template('page/search.html', 
-                                    users=users) 
+                                games=games)
 
 
 @page.route("/game",  methods=["GET","POST"])
