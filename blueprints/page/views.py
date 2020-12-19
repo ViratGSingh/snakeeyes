@@ -25,7 +25,7 @@ def home():
             t_tags=a["top_tags"]
             tr_code=str(a["tag_code"])+'+'+str(a["rating_code"])
             
-            games.append([name,i_url,r_Date,dev,t_tags,tr_code])
+            games.append([name,i_url,r_date,dev,t_tags,tr_code])
             
             
 
