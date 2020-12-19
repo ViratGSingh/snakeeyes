@@ -9,10 +9,7 @@
   
   <!-- Page Content -->
   <div class="container" style="padding: 15px;">
-    <form action="/">
-      <button type="submit" name="tier" value="ht">Tier 1</button>
-      <button type="submit" name="tier" value="lt">Tier 2</button>
-    </form>
+   
     
     
 
@@ -22,31 +19,31 @@
                 <div class="row" style="padding: 15px;">
                 
                     <div class="card-body">
-                      <img src="{{ user[7] }}" width="150" height="150" style="padding: 5px; float: left;"/>
+                      <img src="{{ user[1] }}" width="150" height="150" style="padding: 5px; float: left;"/>
                     </div>
-                    <h3 class="card-title" id="game" >{{ user[1] }}</h3>
+                    <h3 class="card-title" id="game" >{{ user[0] }}</h3>
                    
                     
                     <span>
                       <span style="font-size: large;">Developer: </span>
-                      <span style="font-size: larger;">{{user[2] }}</span> 
+                      <span style="font-size: larger;">{{user[3] }}</span> 
                     </span>
                     <br>
                     
                     <span>
                       <span style="font-size: large;">Date: </span>
-                      <span style="font-size: larger;">{{user[4] }}</span> 
+                      <span style="font-size: larger;">{{user[2] }}</span> 
                     </span>
                     <br>
-                    <!-- <span>
-                      <span style="font-size: large;">Type: </span>
-                      <span style="font-size: larger;">{{users[0][6] }}</span> 
+                    <span>
+                      <span style="font-size: large;">Top Tags: </span>
+                      <span style="font-size: larger;">{{users[4] }}</span> 
                     </span>
-                    <br> -->
+                    <br>
                     
                     <form action="/game">
-                      <button type="submit" name="recommend" value="{{ user[8] }}">Recommend</button>
-                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[1] }}">More Details</button>
+                      <button type="submit" name="recommend" value="{{ user[5] }}">Recommend</button>
+                      <button style="float: inline-end;" type="submit" name="details" value="{{ user[0] }}">More Details</button>
                         
                       
                       
