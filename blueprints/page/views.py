@@ -29,7 +29,7 @@ def home():
             
             
 
-            return render_template('page/search.html', 
+        return render_template('page/search.html', 
                                 games=games)
 
 
