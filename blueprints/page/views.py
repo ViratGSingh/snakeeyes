@@ -23,6 +23,7 @@ def home():
             r_date=a["release_date"]
             dev=a["developer"]
             t_tags=a["top_tags"]
+            p_rating=a["all_p"]
             tr_code=str(a["tag_code"])+','+str(a["rating_code"])
             
             games.append([name,i_url,r_date,dev,t_tags,tr_code])
@@ -52,6 +53,7 @@ def search():
                 r_date=a["release_date"]
                 dev=a["developer"]
                 t_tags=a["top_tags"]
+                p_rating=a["all_p"]
                 tr_code=str(a["tag_code"])+','+str(a["rating_code"])
                 
                 games.append([name,i_url,r_date,dev,t_tags,tr_code])
