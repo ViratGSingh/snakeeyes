@@ -26,7 +26,7 @@ def home():
             p_rating=a["all_p"]
             tr_code=str(a["tag_code"])+','+str(a["rating_code"])
             
-            games.append([name,i_url,r_date,dev,t_tags,tr_code])
+            games.append([name,i_url,r_date,dev,t_tags,p_rating,tr_code])
             
             
 
@@ -56,7 +56,7 @@ def search():
                 p_rating=a["all_p"]
                 tr_code=str(a["tag_code"])+','+str(a["rating_code"])
                 
-                games.append([name,i_url,r_date,dev,t_tags,tr_code])
+                games.append([name,i_url,r_date,dev,t_tags,p_rating,tr_code])
 
                
             return render_template('page/search.html', 
