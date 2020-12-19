@@ -40,9 +40,14 @@
                       <span style="font-size: larger;">{{game[4] }}</span> 
                     </span>
                     <br>
+                    <span>
+                      <span style="font-size: large;">Positive Ratings: </span>
+                      <span style="font-size: larger;">{{game[5] }}%</span> 
+                    </span>
+                    <br>
                     
                     <form action="/game">
-                      <button type="submit" name="recommend" value="{{ game[5] }}">Recommend</button>
+                      <button type="submit" name="recommend" value="{{ game[6] }}">Recommend</button>
                       <button style="float: inline-end;" type="submit" name="details" value="{{ game[0] }}">More Details</button>
                         
                       
