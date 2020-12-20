@@ -18,15 +18,21 @@ def home():
         recoms=db.indie.aggregate([ { "$sample": { "size": 6 } } ])
         games=[]
         for a in recoms:
+            
             name=a["name"]
+            v=name.lower()
+            v=v.replace(".","*")
+            v=v.replace(" ","_")
+            v=v.replace("$","&")
             i_url=a["img_url"]
             r_date=a["release_date"]
             dev=a["developer"]
             t_tags=a["top_tags"]
-            p_rating=a["all_p"]
-            tr_code=str(a["tag_code"])+','+str(a["rating_code"])
+            is_free=a["free"]
+            a_rating=a["all_rating"]
             
-            games.append([name,i_url,r_date,dev,t_tags,p_rating,tr_code])
+            
+            games.append([v,name,dev,r_date,t_tags,i_url,is_free,a_rating])
             
             
 
@@ -42,35 +48,22 @@ def search():
     if request.args.get("recommend"):
         game=request.args.get("recommend")
         if game:
-            codes=game.split(",")
-            t_code=int(codes[0])
-            r_code=int(codes[1])
-            r=db.indie.find({'$and':[{"tag_code":{'$lte':t_code}},{"rating_code":{'$lte':r_code}}]}).sort([("tag_code", -1), ("rating_code", -1)]).limit(5)
-            games=[]
-            for a in r:
-                name=a["name"]
-                i_url=a["img_url"]
-                r_date=a["release_date"]
-                dev=a["developer"]
-                t_tags=a["top_tags"]
-                p_rating=a["all_p"]
-                tr_code=str(a["tag_code"])+','+str(a["rating_code"])
-                
-                games.append([name,i_url,r_date,dev,t_tags,p_rating,tr_code])
-
-               
+            
+            req=db.i_recom.find({"Key": game})
+            for i in req:
+                games=i[game]  
             return render_template('page/search.html', 
                                 games=games)    
     elif request.args.get("details"):
         saved_game=request.args.get("details")
         detail=[]
-        name=db.games.find_one({"name":saved_game})["name"]
+        name=db.indie.find_one({"name":saved_game})["name"]
         detail.append(name)
-        page_l=db.games.find_one({"name":saved_game})["link"]
+        page_l=db.indie.find_one({"name":saved_game})["link"]
         detail.append(page_l)
-        image_l=db.games.find_one({"name":saved_game})["img_url"]
+        image_l=db.indie.find_one({"name":saved_game})["img_url"]
         detail.append(image_l)
-        p_date=db.games.find_one({"name":saved_game})["release_date"]
+        p_date=db.indie.find_one({"name":saved_game})["release_date"]
         detail.append(p_date)
         # status=db.games.find_one({"name":saved_game})["game_status"]
         # detail.append(status)
@@ -78,18 +71,18 @@ def search():
         # detail.append(",".join(platforms))
         # rating=db.details.find_one({"name":saved_game})["aggregate_rating"]
         # detail.append(rating)
-        author=db.games.find_one({"name":saved_game})["developer"]
+        author=db.indie.find_one({"name":saved_game})["developer"]
         detail.append(author)
         
-        tags=db.games.find_one({"name":saved_game})["tags"]
+        tags=db.indie.find_one({"name":saved_game})["tags"]
         detail.append(",".join(tags))
-        avg_session=db.games.find_one({"name":saved_game})["min_space"]
+        avg_session=db.indie.find_one({"name":saved_game})["min_space"]
         detail.append(avg_session)
-        languages=db.games.find_one({"name":saved_game})["min_ram"]
+        languages=db.indie.find_one({"name":saved_game})["min_ram"]
         detail.append(languages) 
-        inputs=db.games.find_one({"name":saved_game})["price"]
+        inputs=db.indie.find_one({"name":saved_game})["price"]
         detail.append(inputs)
-        desc=db.games.find_one({"name":saved_game})["description"]
+        desc=db.indie.find_one({"name":saved_game})["description"]
         detail.append(desc)
         return render_template('page/details.html',detail=detail)
         
