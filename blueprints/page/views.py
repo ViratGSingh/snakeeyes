@@ -44,10 +44,13 @@ def search():
     if request.args.get("recommend"):
         game=request.args.get("recommend")
         if game:
-            
-            req=db.i_recom.find({"Key": game})
+            name=game.replace(".","*")
+            name=name.replace(" ","_")
+            name=name.replace("$","&")
+            name=name.lower()
+            req=db.i_recom.find({"Key": name})
             for i in req:
-                games=i[game]  
+                games=i[name]  
             return render_template('page/search.html', 
                                 games=games)    
     elif request.args.get("details"):
