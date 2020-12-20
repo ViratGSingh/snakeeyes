@@ -20,10 +20,6 @@ def home():
         for a in recoms:
             
             name=a["name"]
-            v=name.lower()
-            v=v.replace(".","*")
-            v=v.replace(" ","_")
-            v=v.replace("$","&")
             i_url=a["img_url"]
             r_date=a["release_date"]
             dev=a["developer"]
@@ -32,7 +28,7 @@ def home():
             a_rating=a["all_rating"]
             
             
-            games.append([v,name,dev,r_date,t_tags,i_url,is_free,a_rating])
+            games.append(["0",name,dev,r_date,t_tags,i_url,is_free,"0",a_rating])
             
             
 
