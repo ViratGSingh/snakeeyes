@@ -21,7 +21,7 @@ def home():
         name=name.replace(".","*")
         name=name.replace(" ","_")
         name=name.replace("$","&")
-        req=db.i_recom.find({"Key": name})
+        req=db.g_recom.find({"Key": name})
         for i in req:
             games=i[name]  
         return render_template('page/search.html', 
@@ -65,7 +65,7 @@ def search():
             name=name.replace(" ","_")
             name=name.replace("$","&")
             name=name.lower()
-            req=db.i_recom.find({"Key": name})
+            req=db.g_recom.find({"Key": name})
             for i in req:
                 games=i[name]  
             return render_template('page/search.html', 
