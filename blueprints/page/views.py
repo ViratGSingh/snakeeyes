@@ -10,10 +10,13 @@ db = client["steam"]
 def loader():
     return render_template('page/loaderio-89e5a74c98935e38038b0c14e5c7e883.html')
 
-@page.route('/search',  methods=["GET","POST"])
-def find():
+
+    
+
+@page.route('/',  methods=["GET","POST"])
+def home():
     if request.method=="POST":
-        name=request.form.get("item")
+        name=request.args.get("item")
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
@@ -25,11 +28,6 @@ def find():
                             games=games) 
     else:
         return render_template('page/home.html')
-    
-
-@page.route('/',  methods=["GET","POST"])
-def home():
-    return render_template('page/home.html')
     # if request.method=="POST":
     #     game=request.form["submit"]
     #     return redirect(url_for("page.search",game=game))
