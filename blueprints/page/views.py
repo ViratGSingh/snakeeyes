@@ -9,31 +9,50 @@ db = client["steam"]
 @page.route('/loaderio-89e5a74c98935e38038b0c14e5c7e883/')
 def loader():
     return render_template('page/loaderio-89e5a74c98935e38038b0c14e5c7e883.html')
+
+@page.route('/search',  methods=["GET","POST"])
+def find():
+    if request.args.get("item"):
+        name=request.args.get("item")
+        name=name.lower()
+        name=name.replace(".","*")
+        name=name.replace(" ","_")
+        name=name.replace("$","&")
+        req=db.i_recom.find({"Key": name})
+        for i in req:
+            games=i[name]  
+        return render_template('page/search.html', 
+                            games=games) 
+    else:
+        return render_template('page/home.html')
+    
+
 @page.route('/',  methods=["GET","POST"])
 def home():
-    if request.method=="POST":
-        game=request.form["submit"]
-        return redirect(url_for("page.search",game=game))
-    else:    
-        recoms=db.indie.aggregate([ { "$sample": { "size": 6 } } ])
-        games=[]
-        for a in recoms:
+    return render_template('page/home.html')
+    # if request.method=="POST":
+    #     game=request.form["submit"]
+    #     return redirect(url_for("page.search",game=game))
+    # else:    
+    #     recoms=db.indie.aggregate([ { "$sample": { "size": 6 } } ])
+    #     games=[]
+    #     for a in recoms:
             
-            name=a["name"]
-            i_url=a["img_url"]
-            r_date=a["release_date"]
-            dev=a["developer"]
-            t_tags=a["top_tags"]
-            is_free=a["free"]
-            a_rating=a["all_rating"]
+    #         name=a["name"]
+    #         i_url=a["img_url"]
+    #         r_date=a["release_date"]
+    #         dev=a["developer"]
+    #         t_tags=a["top_tags"]
+    #         is_free=a["free"]
+    #         a_rating=a["all_rating"]
             
             
-            games.append(["0",name,dev,r_date,t_tags,i_url,is_free,"0",a_rating])
+    #         games.append(["0",name,dev,r_date,t_tags,i_url,is_free,"0",a_rating])
             
             
 
-        return render_template('page/search.html', 
-                                games=games)
+    #     return render_template('page/search.html', 
+    #                             games=games)
 
 
 @page.route("/game",  methods=["GET","POST"])
