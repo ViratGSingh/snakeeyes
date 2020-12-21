@@ -15,7 +15,7 @@ def loader():
 
 @page.route('/',  methods=["GET","POST"])
 def home():
-    if request.method=="POST":
+    if request.args.get("item"):
         name=request.args.get("item")
         name=name.lower()
         name=name.replace(".","*")
