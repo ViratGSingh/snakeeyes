@@ -28,7 +28,8 @@ from blueprints.user.forms import (
     WelcomeForm,
     UpdateCredentials)
 user = Blueprint('user', __name__, template_folder='templates')
-
+client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
+db = client["steam"]
 
 @user.route('/login', methods=['GET', 'POST'])
 @anonymous_required()
@@ -128,7 +129,9 @@ def signup():
         u.password = User.encrypt_password(request.form.get('password'))
         u.save()
 
+
         if login_user(u):
+            db.users.insert_one({"user_email":u.email})
             flash('Awesome, thanks for signing up!', 'success')
             return redirect(url_for('user.welcome'))
 
@@ -181,3 +184,5 @@ def update_credentials():
         return redirect(url_for('user.settings'))
 
     return render_template('user/update_credentials.html', form=form)
+
+
