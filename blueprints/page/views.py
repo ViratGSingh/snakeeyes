@@ -93,9 +93,9 @@ def search():
         tags=db.games.find_one({"name":saved_game})["tags"]
         detail.append(",".join(tags))
         space=db.games.find_one({"name":saved_game})["min_space"]
-        detail.append(space[0])
+        detail.append(space)
         ram=db.games.find_one({"name":saved_game})["min_ram"]
-        detail.append(ram[0]) 
+        detail.append(ram) 
         rr=db.games.find_one({"name":saved_game})["recent_rating"]
         detail.append(rr)
         ar=db.games.find_one({"name":saved_game})["all_rating"]
