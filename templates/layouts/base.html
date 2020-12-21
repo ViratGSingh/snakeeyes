@@ -120,7 +120,7 @@
         
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-              <li><a href="{{ url_for('page.home') }}">Recommend</a></li>
+              <li><a href="{{ url_for('page.home') }}">Home</a></li>
               {% if not current_user.is_authenticated %}
               <li><a href="{{ url_for('user.signup') }}">Sign Up</a></li>
               {% endif %}
