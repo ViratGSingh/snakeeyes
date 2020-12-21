@@ -102,8 +102,7 @@ def search():
         detail.append(desc)
         return render_template('page/details.html',detail=detail)
         
-
-
+  
 
                 
                 
