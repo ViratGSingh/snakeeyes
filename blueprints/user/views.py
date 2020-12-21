@@ -131,7 +131,7 @@ def signup():
 
 
         if login_user(u):
-            db.users.insert_one({"user_email":u.email})
+            
             flash('Awesome, thanks for signing up!', 'success')
             return redirect(url_for('user.welcome'))
 
