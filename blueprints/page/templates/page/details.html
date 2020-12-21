@@ -51,41 +51,46 @@
                     <h3 class="card-title" id="game" >{{ detail[0] }}</h3>
                     <span>
                       <span style="font-size: large;">Developer: </span>
-                      <span style="font-size: larger;">{{detail[7] }}</span> 
+                      <span style="font-size: larger;">{{detail[4] }}</span> 
                     </span>
                     <br>
                     <span>
-                      <span style="font-size: large;">Published: </span>
+                      <span style="font-size: large;">Release Date: </span>
                       <span style="font-size: larger;">{{detail[3] }}</span> 
                     </span>
                     <br> 
                     <span>
                       <span style="font-size: large;">Tags: </span>
-                      <span style="font-size: larger;">{{detail[9] }}</span> 
-                    </span>
-                    <br> 
-                    <span>
-                      <span style="font-size: large;">Status: </span>
-                      <span style="font-size: larger;">{{detail[4] }}</span> 
-                    </span>
-                    <br> 
-                    <span>
-                      <span style="font-size: large;">Platforms: </span>
                       <span style="font-size: larger;">{{detail[5] }}</span> 
                     </span>
                     <br> 
                     <span>
-                      <span style="font-size: large;">Rating: </span>
+                      <span style="font-size: large;">Minimum Space: </span>
                       <span style="font-size: larger;">{{detail[6] }}</span> 
                     </span>
                     <br> 
                     <span>
-                      <span style="font-size: large;">Languages: </span>
+                      <span style="font-size: large;">Minimum Ram: </span>
+                      <span style="font-size: larger;">{{detail[7] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;"> Recent Ratings: </span>
+                      <span style="font-size: larger;">{{detail[8] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;"> All Ratings: </span>
+                      <span style="font-size: larger;">{{detail[9] }}</span> 
+                    </span>
+                    <br> 
+                    <span>
+                      <span style="font-size: large;">Platforms: </span>
                       <span style="font-size: larger;">{{detail[11] }}</span> 
                     </span>
                     <br> 
                     <span>
-                      <span style="font-size: large;">Average Session: </span>
+                      <span style="font-size: large;">Price: </span>
                       <span style="font-size: larger;">{{detail[10] }}</span> 
                     </span>
                     <br> 
@@ -94,10 +99,8 @@
                            <button type="submit">Page Link</button> 
                         </a> 
                     {% else %}
-                        <a href="{{ detail[1] }}">
-                          <form action="/login">
-                            <button type="submit">Log In</button>
-                          </form>                
+                        <a href="{{ url_for('user.login') }}">
+                            <button type="submit">Page Link</button>              
                         </a> 
                     {% endif %}
 
