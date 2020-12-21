@@ -87,9 +87,9 @@ outcome of a dice roll. Win points and dominate the leaderboard.{% endblock %}
                 <option> {{category}} </option>
               {% endfor %}  
             </select>   -->
-            
-            <input type='text' name="podcast" id='tags' autocomplete="off" class="form-control search-form" placeholder="Scooby Doo" style=" width: 420px;">
-            
+            <form action="/search">
+               <input type='text' name="item" id='tags' autocomplete="off" class="form-control search-form" placeholder="Scooby Doo" style=" width: 420px;">
+            </form>
             
               
             
