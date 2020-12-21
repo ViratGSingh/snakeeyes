@@ -12,8 +12,8 @@ def loader():
 
 @page.route('/search',  methods=["GET","POST"])
 def find():
-    if request.args.get("item"):
-        name=request.args.get("item")
+    if request.method=="POST":
+        name=request.form.get("item")
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
