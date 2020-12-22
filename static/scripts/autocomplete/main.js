@@ -1,10 +1,10 @@
 
-const MongoClient = require(['mongodb']).MongoClient;
-const uri ="mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-const collection = client.db("steam").collection("g_recom");
-console.log("success")
-// perform actions on the collection object
-client.close();
+var MongoClient = require(['mongodb']).MongoClient;
+
+var uri = "mongodb://wooshir:vgs41999@items-shard-00-00.uxp6f.mongodb.net:27017,items-shard-00-01.uxp6f.mongodb.net:27017,items-shard-00-02.uxp6f.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-wbruxm-shard-0&authSource=admin&retryWrites=true&w=majority";
+MongoClient.connect(uri, function(err, client) {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log("success")
+  client.close();
 });
