@@ -126,8 +126,9 @@
               {% if not current_user.is_authenticated %}
               <li><a href="{{ url_for('user.signup') }}">Sign Up</a></li>
               {% endif %}
-              <input type="text" placeholder="Search..">
+              
           </ul>    
+          <input type="text" placeholder="Search..">
           <ul class="nav navbar-nav navbar-right">
               <div class="dropdown" >
                 {% if current_user.username %}
