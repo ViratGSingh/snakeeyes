@@ -15,12 +15,22 @@ def loader():
 
 @page.route('/',  methods=["GET","POST"])
 def home():
-    
-    if request.method=="POST":
+    if request.args.get("item"):
+        name=request.args.get("item")
+        name=name.lower()
+        name=name.replace(".","*")
+        name=name.replace(" ","_")
+        name=name.replace("$","&")
+        req=db.g_recom.find({"Key": name})
+        for i in req:
+            games=i[name]  
+        return render_template('page/search.html', 
+                            games=games) 
+    elif request.method=="POST":
         game=request.form["submit"]
         return redirect(url_for("page.search",game=game))
     else:    
-        recoms=db.games.aggregate([ { "$sample": { "size": 6 } } ])
+        recoms=db.top_g.aggregate([ { "$sample": { "size": 6 } } ])
         games=[]
         for a in recoms:
             
