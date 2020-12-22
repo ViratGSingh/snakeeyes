@@ -1,6 +1,6 @@
 
 const MongoClient = require(['mongodb']).MongoClient;
-const uri = "mongodb+srv://wooshir:vgs41999@dhost:port/steam";
+const uri = "mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority";
 MongoClient.connect(uri, function(err, db) {
     if(db && !err) {
         console.log("connected to mongodb" + " " + lobby_db);
