@@ -51,8 +51,11 @@ def find():
     if request.args.get("game"):
         name=request.args.get("game")
         if current_user.is_authenticated:
-            db.users.insert_one({"game":name,"user":current_user.email,"user_id":current_user.id,
+            e=current_user.email.split("@")
+            user=e[0]
+            db.users.insert_one({"game":name,"user":user,"user_id":current_user.id,
                                  "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
+            
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
