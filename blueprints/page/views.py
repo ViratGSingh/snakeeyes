@@ -117,7 +117,7 @@ def search():
                     continue  
 
         except:
-            pass                
+            pl.append("No info")               
         detail.append(",".join(pl))
         return render_template('page/details.html',detail=detail)
         
