@@ -113,12 +113,14 @@ def search():
                     pl[i]="Mac"
                 elif pl[i]=="linux":
                     pl[i]=="Linux"
+                elif pl[i]=="None":
+                    pl.remove(pl[i])    
                 else:
                     continue  
 
         except:
             pl.append("No info")               
-        detail.append(pl)
+        detail.append(",".join(pl))
         return render_template('page/details.html',detail=detail)
         
   
