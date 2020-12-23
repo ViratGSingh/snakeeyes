@@ -43,8 +43,8 @@ def home():
 
 @page.route('/search',  methods=["GET","POST"])
 def find():
-    if request.args.get("item"):
-        name=request.args.get("item")
+    if request.args.get("game"):
+        name=request.args.get("game")
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
