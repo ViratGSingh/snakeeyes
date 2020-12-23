@@ -9,31 +9,32 @@
   
   <!-- Page Content -->
   <div class="container" style="padding: 15px;">
-    <div class="input-group" >
-      
-      <!-- <select name="category" style="height: 35px; float: left; ">
-        {% for category in categories %} 
-          <option> {{category}} </option>
-        {% endfor %}  
-      </select>   -->
-      
-      <input type='text' name="item" id='game' autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
-      
-      
-        
-      
-        
-      
-      
-        
-      <span class="input-group-btn" style="width:40px;">
-        <button id="search-this" type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-        </button>
-      </span>
-      
-    </div> 
-    
+    <form action="/">
+        <div class="input-group" style="padding: 15px;">
+          
+          <!-- <select name="category" style="height: 35px; float: left; ">
+            {% for category in categories %} 
+              <option> {{category}} </option>
+            {% endfor %}  
+          </select>   -->
+          
+          <input type='text' name="item" id='game' autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
+          
+          
+            
+          
+            
+          
+          
+            
+          <span class="input-group-btn" style="width:40px;">
+            <button id="search-this" type="submit" class="pull-right btn btn-default search-btn">
+                <i class="fa fa-search"></i>
+            </button>
+          </span>
+          
+        </div> 
+    </form>
     
 
     
