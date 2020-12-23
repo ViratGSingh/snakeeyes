@@ -105,22 +105,24 @@ def search():
         price=db.games.find_one({"name":saved_game})["price"]
         detail.append(price)
         pl=db.games.find_one({"name":saved_game})["os_l"]
+        tpl=[]
         try:
             for i in range(0,len(pl)):
                 if pl[i]=="win":
                     pl[i]="Windows"
+                    tpl.append(pl[i])
                 elif pl[i]=="mac":
                     pl[i]="Mac"
+                    tpl.append(pl[i])
                 elif pl[i]=="linux":
                     pl[i]=="Linux"
-                elif pl[i]=="None":
-                    pl.remove(pl[i])    
+                    tpl.append(pl[i])  
                 else:
                     continue  
 
         except:
-            pl.append("No info")               
-        detail.append(",".join(pl))
+            tpl.append("No info")               
+        detail.append(",".join(tpl))
         return render_template('page/details.html',detail=detail)
         
   
