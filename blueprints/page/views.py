@@ -1,5 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect
 import requests
+from flask_login import (
+    login_required,
+    login_user,
+    current_user,
+    logout_user)
 from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
@@ -45,6 +50,9 @@ def home():
 def find():
     if request.args.get("game"):
         name=request.args.get("game")
+        if current_user.is_authenticated:
+            db.users.insert_one({"game":name,"user":current_user.email,"user_id":current_user.id,
+                                 "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
