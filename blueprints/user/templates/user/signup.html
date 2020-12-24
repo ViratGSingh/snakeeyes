@@ -10,28 +10,22 @@
       <i class="fa fa-fw fa-4x fa-bullhorn text-primary"></i>
       <h4>Search</h4>
       <p class="text-muted"> your favourites.</p>
-      <p>
-        <a href="{{ url_for('page.find') }}" class="btn btn-default">Search</a>
-      </p>
+     
       <br>
       <i class="fa fa-fw fa-4x fa-bullhorn text-primary"></i>
       <h4>Surf</h4>
       <p class="text-muted">by pressing the 'More like this' button.</p>
-      <p>
-        <a href="{{ url_for('page.find') }}" class="btn btn-default">Search</a>
-      </p>
+      
       <br>
       <i class="fa fa-fw fa-4x fa-trophy text-primary"></i>
       <h4>Get</h4>
       <p class="text-muted">recommendations catered to your likings.</p>
-      <p>
-        <a href="{{ url_for('page.find') }}" class="btn btn-default">Search</a>
-      </p>
+      
     </div>
     
     
     
-    <div class="col-xs-4 col-xs-offset-4 well col-sm-4 col-sm-offset-4 well col-lg-4 col-lg-offset-4 well">
+    <div class="col-xs-4 well col-sm-4  well col-lg-4 well">
       {% call f.form_tag('user.signup') %}
         <legend>Sign up today</legend>
 
