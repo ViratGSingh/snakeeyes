@@ -24,13 +24,35 @@ def start():
 
         return render_template('page/start.html')
 
-@page.route('/home',  methods=["GET","POST"])
-def home():
+
+
+
+@page.route('/search',  methods=["GET","POST"])
+def find():
     
     if request.method=="POST":
         game=request.form["submit"]
         return redirect(url_for("page.search",game=game))
-    else:    
+   
+    elif request.args.get("game"):
+        name=request.args.get("game")
+        if current_user.is_authenticated:
+            e=current_user.email.split("@")
+            user=e[0]
+            db.users.insert_one({"game":name,"user":user,"user_id":current_user.id,"type":"search",
+                                 "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
+            
+        name=name.lower()
+        name=name.replace(".","*")
+        name=name.replace(" ","_")
+        name=name.replace("$","&")
+        req=db.g_recom.find({"Key": name})
+        for i in req:
+            games=i[name]  
+        return render_template('page/search.html', 
+                            games=games) 
+    
+     else:    
         recoms=db.top_g.aggregate([ { "$sample": { "size": 6 } } ])
         games=[]
         for a in recoms:
@@ -50,27 +72,6 @@ def home():
 
         return render_template('page/search.html', 
                                 games=games)
-
-
-@page.route('/search',  methods=["GET","POST"])
-def find():
-    if request.args.get("game"):
-        name=request.args.get("game")
-        if current_user.is_authenticated:
-            e=current_user.email.split("@")
-            user=e[0]
-            db.users.insert_one({"game":name,"user":user,"user_id":current_user.id,"type":"search",
-                                 "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
-            
-        name=name.lower()
-        name=name.replace(".","*")
-        name=name.replace(" ","_")
-        name=name.replace("$","&")
-        req=db.g_recom.find({"Key": name})
-        for i in req:
-            games=i[name]  
-        return render_template('page/search.html', 
-                            games=games) 
 
 @page.route("/game",  methods=["GET","POST"])
 
