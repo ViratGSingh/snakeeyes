@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from blueprints.page import page
@@ -41,7 +41,7 @@ def create_app(settings_override=None):
     
     
     authentication(app, User)
-    
+    error_templates(app)
     return app
 
 
@@ -58,6 +58,32 @@ def extensions(app):
     db.init_app(app)
     
     login_manager.init_app(app)
+
+    return None
+def error_templates(app):
+    """
+    Register 0 or more custom error pages (mutates the app passed in).
+
+    :param app: Flask application instance
+    :return: None
+    """
+
+    def render_status(status):
+        """
+         Render a custom template for a specific status.
+           Source: http://stackoverflow.com/a/30108946
+
+         :param status: Status as a written name
+         :type status: str
+         :return: None
+         """
+        # Get the status code from the status, default to a 500 so that we
+        # catch all types of errors and treat them as a 500.
+        code = getattr(status, 'code', 500)
+        return render_template('errors/{0}.html'.format(code)), code
+
+    for error in [404, 429, 500]:
+        app.errorhandler(error)(render_status)
 
     return None
 def authentication(app, user_model):
