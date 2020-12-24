@@ -17,6 +17,12 @@ def loader():
 
 
     
+@page.route('/start',  methods=["GET","POST"])
+def start():
+    
+    
+
+        return render_template('page/start.html')
 
 @page.route('/',  methods=["GET","POST"])
 def home():
