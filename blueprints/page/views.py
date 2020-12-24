@@ -17,14 +17,14 @@ def loader():
 
 
     
-@page.route('/start',  methods=["GET","POST"])
+@page.route('/',  methods=["GET","POST"])
 def start():
     
     
 
         return render_template('page/start.html')
 
-@page.route('/',  methods=["GET","POST"])
+@page.route('/home',  methods=["GET","POST"])
 def home():
     
     if request.method=="POST":
