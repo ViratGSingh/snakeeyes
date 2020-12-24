@@ -54,7 +54,7 @@ def find():
                             games=games) 
                          
     
-     else:    
+    else:   
         recoms=db.top_g.aggregate([ { "$sample": { "size": 6 } } ])
         games=[]
         for a in recoms:
