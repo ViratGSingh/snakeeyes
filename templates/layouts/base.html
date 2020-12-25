@@ -146,7 +146,15 @@
               {% endif %}
               
           </ul> 
-          
+          <style>
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {background-color: #ddd;}
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {display: block;}
+
+            
+          </style>
           <ul class="nav navbar-nav navbar-right">
               <div class="dropdown" >
                 {% if current_user.username %}
