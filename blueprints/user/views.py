@@ -57,7 +57,7 @@ def login():
                 if next_url:
                     return redirect(safe_next_url(next_url))
 
-                return redirect(url_for('page.home'))
+                return redirect(url_for('page.start'))
             else:
                 flash('This account has been disabled.', 'error')
         else:
