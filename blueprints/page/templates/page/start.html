@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Snake Eyes{% endblock %}
+
+  
+
+{% block body %}
+  
+<div class="single-product-area">
+  
+  <!-- Page Content -->
+  <div class="container" style="padding: 15px;">
+   
+    
+
+    
+          {% for game in games %}
+            
+                <div class="row" style="padding: 15px;">
+                
+                    <div class="card-body">
+                      <img src="{{ game[5] }}" width="300" height="200" style="padding: 5px; float: left;"/>
+                    </div>
+                    <h3 class="card-title" id="game" >{{ game[1] }}</h3>
+                   
+                    
+                    <span>
+                      <span style="font-size: large;">Developer: </span>
+                      <span style="font-size: larger;">{{game[2] }}</span> 
+                    </span>
+                    <br>
+                    
+                    <span>
+                      <span style="font-size: large;">Date: </span>
+                      <span style="font-size: larger;">{{game[3] }}</span> 
+                    </span>
+                    <br>
+                    <span>
+                      <span style="font-size: large;">Top Tags: </span>
+                      <span style="font-size: larger;">{{game[4] }}</span> 
+                    </span>
+                    <br>
+                    <span>
+                      <span style="font-size: large;">Rating: </span>
+                      <span style="font-size: larger;">{{game[8] }}</span> 
+                    </span>
+                    <br>
+                    
+                    <form action="/game">
+                      <button type="submit" name="recommend" value="{{ game[1] }}">More Like This</button>
+                      <button style="float: inline-end;" type="submit" name="details" value="{{ game[1] }}">More Details</button>
+                        
+                      
+                      
+                    </form> 
+                </div>
+                    
+                 
+            
+          {% endfor %}
+              
+              
+  
+            
+      
+
+  
+   
+    </div>
+  <!-- /.container -->
+
+  
+
+
+
+          
+          
+         
+  </div> 
+</div>  
+{% endblock %}z
