@@ -48,7 +48,9 @@
                   <div class="card-body" >
                     
                    
-                    <h3 class="card-title" id="game" >{{ detail[0] }}</h3>
+                    <a href="{{ detail[1] }}" target="_blank" rel="noopener noreferrer">
+                      <h3 class="card-title" id="game" >{{ detail[0] }}</h3> 
+                    </a> 
                     <span>
                       <span style="font-size: large;">Developer: </span>
                       <span style="font-size: larger;">{{detail[4] }}</span> 
@@ -94,20 +96,16 @@
                       <span style="font-size: larger;"> ₹{{detail[10] }}</span> 
                     </span>
                     <br>
-                    
-                      <a href="#/game"><button type="submit" name="recommend" value="{{ detail[0] }}">More Like This</button>
-                       </a>
-                     
-                    {% if current_user.is_authenticated %}
-                        <a href="{{ detail[1] }}" target="_blank" rel="noopener noreferrer">
-                           <button type="submit" style="float: inline-end;">Page Link</button> 
-                        </a> 
-                    {% else %}
-                        <a href="{{ url_for('user.login') }}">
-                            <button type="submit" style="float: inline-end;">Page Link</button>              
-                        </a> 
-                    {% endif %}
-                    
+                    <form action="/game">
+                      <button type="submit" name="recommend" value="{{ detail[0] }}">More Like This</button>
+         
+                        
+                      
+                      
+                    </form>  
+                   
+                       
+                  
                   </div>
                 </div>
                 </td>
