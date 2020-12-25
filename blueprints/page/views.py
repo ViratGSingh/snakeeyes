@@ -37,7 +37,7 @@ def start():
             
             
 
-        return render_template('page/search.html', 
+        return render_template('page/start.html', 
                                 games=games)
 
 
