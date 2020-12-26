@@ -24,7 +24,7 @@ var collection;
 
 
 
-server.listen("https://snake-eyes.herokuapp.com", async () => {
+server.listen("3000", async () => {
 
     try {
 
