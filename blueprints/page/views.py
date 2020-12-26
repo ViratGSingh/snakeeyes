@@ -15,7 +15,37 @@ db = client["steam"]
 def loader():
     return render_template('page/loaderio-89e5a74c98935e38038b0c14e5c7e883.html')
 
+@page.route('/autocomplete',  methods=["GET","POST"])
+def auto():
+    game = request.args.get('query')
+    result = db.g_recom.aggregate([
 
+            {
+
+                "$search": {
+
+                    "autocomplete": {
+
+                        "query": game,
+
+                        "path": "Key",
+
+                        "fuzzy": {
+
+                            "maxEdits": 2,
+
+                            "prefixLength": 3
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        ]).toArray()
+    return result
     
 @page.route('/',  methods=["GET","POST"])
 def start():
