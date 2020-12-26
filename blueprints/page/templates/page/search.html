@@ -18,7 +18,7 @@
             {% endfor %}  
           </select>   -->
           
-          <input type='text' name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
+          <input type='text' id='games' name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
           
           
             
@@ -37,7 +37,7 @@
     </form>
     <script>
           $(document).ready(function () {
-        $("#recipe").autocomplete({
+        $("#games").autocomplete({
             source: async function(request, response) {
                 let data = await fetch(`http://localhost:3000/search?query=${request.term}`)
                     .then(results => results.json())
