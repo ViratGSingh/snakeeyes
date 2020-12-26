@@ -44,7 +44,7 @@ def auto():
 
             }
 
-        ]).toArray()
+        ])
     return result
     
 @page.route('/',  methods=["GET","POST"])
