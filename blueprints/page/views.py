@@ -8,6 +8,7 @@ from flask_login import (
 from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
+from bson.json_util import dumps
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
 
@@ -45,7 +46,7 @@ def auto():
             }
 
         ])
-    return jsonify(result)    
+    return dumps(result)    
     
     
 @page.route('/',  methods=["GET","POST"])
