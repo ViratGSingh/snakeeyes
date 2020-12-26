@@ -73,7 +73,7 @@ server.get("/search", async (request, response) => {
 
         ]).toArray();
 
-        response.send(result);
+        response.send(result.json());
 
     } catch (e) {
 
