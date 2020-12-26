@@ -42,7 +42,7 @@
                 let data = await fetch(`https://snake-eyes.herokuapp.com/search?query=${request.term}`)
                     .then(results => results.json())
                     .then(results => results.map(result => {
-                        return { label: result.name, value: result.name, id: result._id };
+                        return { 'label': result.name, 'value': result.name, 'id': result._id };
                     }));
                 response(data);
             },
