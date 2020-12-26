@@ -45,7 +45,10 @@ def auto():
             }
 
         ])
-    return result
+    j=[]    
+    for i in result:
+        j.append(i["Key"])
+    return j
     
 @page.route('/',  methods=["GET","POST"])
 def start():
