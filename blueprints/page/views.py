@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect
+from flask import Blueprint, render_template, flash, redirect,jsonify
 import requests
 from flask_login import (
     login_required,
@@ -45,10 +45,8 @@ def auto():
             }
 
         ])
-    j=[]    
-    for i in result:
-        j.append(i["Key"])
-    return j
+    return jsonify(result)    
+    
     
 @page.route('/',  methods=["GET","POST"])
 def start():
