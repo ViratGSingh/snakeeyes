@@ -19,7 +19,7 @@
           </select>   -->
           
           <input type='text' id='games' name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
-          
+          <ul id="games_l"></ul>
           
             
           
@@ -43,7 +43,7 @@
             source: async function(request, response) {
                 let data = await fetch(`https://snake-eyes.herokuapp.com/autocomplete?query=${request.term}`)
                     .then(results => results.map(result => {
-                        return { label: result.Key};
+                      ("#games_l").append(`<li>${result}</li>`);
                     }));
                 response(data);
             },
