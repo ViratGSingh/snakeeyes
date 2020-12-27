@@ -48,7 +48,7 @@ def auto():
         ])
     l=[]    
     for i in result:
-      l.append(i)
+      l.append(i["key"])
     return json.dumps(l)   
     
     
