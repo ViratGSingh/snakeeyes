@@ -89,25 +89,11 @@ def find():
                          
     
     else:   
-        recoms=db.top_g.aggregate([ { "$sample": { "size": 6 } } ])
-        games=[]
-        for a in recoms:
-            
-            name=a["name"]
-            i_url=a["img_url"]
-            r_date=a["release_date"]
-            dev=a["developer"]
-            t_tags=a["top_tags"]
-            is_free=a["free"]
-            a_rating=a["all_rating"]
-            
-            
-            games.append(["0",name,dev,r_date,t_tags,i_url,is_free,"0",a_rating])
+        
             
             
 
-        return render_template('page/search.html', 
-                                games=games)
+        return render_template('page/home.html')
 
 @page.route("/game",  methods=["GET","POST"])
 
