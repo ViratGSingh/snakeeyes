@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+
 
 {% block title %}Snake Eyes{% endblock %}
 
@@ -42,11 +42,15 @@
 
 <div class="row text-center lg-margin-bottom">
     
-  <h1></h1>
+  <a href="{{ url_for('page.start') }}">
+    <img src="{{ url_for('static', filename='images/snake-eyes.jpg') }}"
+         class="img-responsive"
+         width="229" height="50" title="Snake Eyes" alt="Snake Eyes"/>
+  </a>
 </div>
 <div class="row text-center lg-margin-bottom">
   
-  <h1>Snake Eyes</h1>
+  
     
   <form action="/search">
     <div class="input-group" style="padding: 5px; margin:auto;">
