@@ -19,7 +19,7 @@
           </select>   -->
           
           <input type='text' id='games' name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
-          
+          <label for="games" ></label>
           
             
           
@@ -35,7 +35,8 @@
           
         </div> 
     </form>
-    <label for="games"></label>
+    
+    
     <script>
           $(document).ready(function () {
         $("#games").autocomplete(
@@ -50,6 +51,11 @@
                 response(data);
             },
             minLength: 2,
+            select: function(event, ui, response) {
+                response(`https://snake-eyes.herokuapp.com/search?game=${ui.item.value}`);
+                    
+                    }
+            }
             
                     
         });
