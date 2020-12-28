@@ -17,7 +17,7 @@
               <option> {{category}} </option>
             {% endfor %}  
           </select>   -->
-          <label for="games"></label>
+          
           <input type='text' id='games' name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
           
           
@@ -35,6 +35,7 @@
           
         </div> 
     </form>
+    <label for="games"></label>
     <script>
           $(document).ready(function () {
         $("#games").autocomplete(
