@@ -67,12 +67,12 @@
             response(data);
         }),
         minLength: 2,
-        select: $('#games').on('click',function(event, ui, response) {
+        select: function(event, ui, response) {
             
                 
             window.open(`https://snake-eyes.herokuapp.com/search?game=${ui.item.value}`, "_self");
                 
-        })
+        }
     });
 });
         
