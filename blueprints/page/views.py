@@ -146,16 +146,16 @@ def search():
         
         tags=db.games.find_one({"name":saved_game})["top_tags"]
         detail.append(tags)
-        space=db.games.find_one({"name":saved_game})["min_space"]
-        detail.append(space)
+        desc=db.games.find_one({"name":saved_game})["description"]
+        detail.append(desc)
         ram=db.games.find_one({"name":saved_game})["min_ram"]
         detail.append(ram) 
         rr=db.games.find_one({"name":saved_game})["recent_rating"]
         rr=rr.split('.')
-        detail.append(rr)
+        detail.append(rr[0])
         ar=db.games.find_one({"name":saved_game})["all_rating"]
         ar=ar.split('.')
-        detail.append(ar)
+        detail.append(ar[0])
         price=db.games.find_one({"name":saved_game})["price"]
         if type(price)==int:
             price="₹"+str(price)
