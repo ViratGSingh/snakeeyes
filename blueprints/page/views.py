@@ -19,7 +19,7 @@ def loader():
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
     game = request.args.get('query')
-    result = db.g_recom.aggregate([
+    result = db.recom.aggregate([
 
             {
 
@@ -29,7 +29,7 @@ def auto():
 
                         "query": game,
 
-                        "path": "Key",
+                        "path": "Autocomplete",
 
                         "fuzzy": {
 
@@ -49,7 +49,7 @@ def auto():
         ])
     l=[]    
     for i in result:
-      l.append(i["Key"])
+      l.append(i["Autocomplete"])
     return json.dumps(l)   
     
     
