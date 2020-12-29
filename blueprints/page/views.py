@@ -43,9 +43,10 @@ def auto():
 
                 }
 
-            }
+            },
+            { "$limit" : 5 }
 
-        ]).limit(5)
+        ])
     l=[]    
     for i in result:
       l.append(i["Key"])
