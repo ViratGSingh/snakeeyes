@@ -145,7 +145,7 @@ def search():
         detail.append(author)
         
         tags=db.games.find_one({"name":saved_game})["top_tags"]
-        detail.append(",".join(tags))
+        detail.append(tags)
         space=db.games.find_one({"name":saved_game})["min_space"]
         detail.append(space)
         ram=db.games.find_one({"name":saved_game})["min_ram"]
