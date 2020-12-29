@@ -79,7 +79,7 @@ def error_templates(app):
          """
         # Get the status code from the status, default to a 500 so that we
         # catch all types of errors and treat them as a 500.
-        code = getattr(status, 'code')
+        code = getattr(status, 'code', 500)
         return render_template('errors/{0}.html'.format(code)), code
 
     for error in [404, 429, 500]:
