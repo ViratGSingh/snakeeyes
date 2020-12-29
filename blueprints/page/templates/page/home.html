@@ -54,25 +54,25 @@
 
 
 <script>
-      $(document).ready(function () {
+      $(document).ready(function (inp) {
     $("#games").autocomplete(
       
     {
-        source: async function(request, response) {
+        source: inp.addEventListener('input', async function(request, response) {
             let data = await fetch(`https://snake-eyes.herokuapp.com/autocomplete?query=${request.term}`)
                 .then(results => results.json())
                 .then(results => results.map(result => {
                     return { label: result, value: result };
                 }));
             response(data);
-        },
+        }),
         minLength: 2,
-        select: function(event, ui, response) {
+        select: inp.addEventListener("click",function(event, ui, response) {
             
                 
             window.open(`https://snake-eyes.herokuapp.com/search?game=${ui.item.value}`, "_self");
                 
-        }
+        })
     });
 });
         
