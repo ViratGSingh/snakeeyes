@@ -152,9 +152,10 @@ def search():
         detail.append(ram) 
         rr=db.games.find_one({"name":saved_game})["recent_rating"]
         rr=rr.split('.')
-        detail.append(rr[0])
+        detail.append(rr[1])
         ar=db.games.find_one({"name":saved_game})["all_rating"]
-        detail.append(ar)
+        ar=ar.split('.')
+        detail.append(ar[1])
         price=db.games.find_one({"name":saved_game})["price"]
         if type(price)==int:
             price="₹"+str(price)
