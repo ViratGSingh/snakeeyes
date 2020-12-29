@@ -1,7 +1,7 @@
 {% extends 'layouts/app.html' %}
 
-{% block title %}Error 404{% endblock %}
-{% block heading %}<h2>Error 404</h2>{% endblock %}
+{% block title %}Error 500{% endblock %}
+{% block heading %}<h2>Error 500</h2>{% endblock %}
 
 {% block body %}
 <style>
@@ -18,7 +18,7 @@ body * {
 
 body {
   font: normal 100%/1.15 "Merriweather", serif;
-  background-color:brown;
+  background-color: brown;
   color: #fff;
 }
 
@@ -37,7 +37,7 @@ body {
   margin: 0 auto;
   padding: 1em 1em;
   text-align: center;
- 
+  
 }
 
 h1, p:not(:last-of-type) { text-shadow: 0 0 6px #216f79; }
@@ -55,22 +55,22 @@ p {
 p:first-of-type { margin-top: 4em; }
 
 p > a {
-  border-bottom: 1px dashed #216f79;
+  border-bottom: 1px dashed white;
   font-style: italic;
   text-decoration: none;
-  color: #216f79;
+  color: white;
 }
 
-p > a:hover { text-shadow: 0 0 6px #216f79; }
+p > a:hover { color:  gold; }
 
 p img { vertical-align: bottom; }
 </style>
 <div class="wrapper">
   <div class="box">
-    <h1>404</h1>
-    <p>Page doesn't exist</p>
-    <p>&#58;&#40;</p>
-    <p><a href="/">Let me try again!</a></p>
+  <h1>404</h1>
+  <p>Sorry, there's nothing like this here....yet.</p>
+  <p>&#58;&#40;</p>
+  <p><a href="/">Let me try again!</a></p>
   </div>
 </div>
 {% endblock %}
