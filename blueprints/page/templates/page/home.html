@@ -59,7 +59,8 @@
       
     {
         source: $('#games').on('input',  function(request, response) {
-            let data = await fetch(`https://snake-eyes.herokuapp.com/autocomplete?query=${request.term}`)
+          var x = document.getElementById("games");
+            let data = await fetch(`https://snake-eyes.herokuapp.com/autocomplete?query=${x}`)
                 .then(results => results.json())
                 .then(results => results.map(result => {
                     return { label: result, value: result };
