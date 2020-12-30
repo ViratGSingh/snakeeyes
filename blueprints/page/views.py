@@ -71,13 +71,8 @@ def find():
    
     elif request.args.get("game"):
         name=request.args.get("game")
-        if current_user.is_authenticated:
-            e=current_user.email.split("@")
-            user=e[0]
-            db.users.insert_one({"game":name,"user":user,"user_id":current_user.id,"type":"search",
-                                 "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
-        else:
-            pass       
+        db.users.insert_one({"game":name,"type":"search"})
+             
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
@@ -104,11 +99,8 @@ def search():
     if request.args.get("recommend"):
         game=request.args.get("recommend")
         if game:
-            if current_user.is_authenticated:
-                e=current_user.email.split("@")
-                user=e[0]
-                db.users.insert_one({"game":game,"user":user,"user_id":current_user.id,"type":"recommend",
-                                    "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
+
+            db.users.insert_one({"game":game,"type":"recommend"})
             name=game.replace(".","*")
             name=name.replace(" ","_")
             name=name.replace("$","&")
@@ -122,11 +114,7 @@ def search():
 
         saved_game=request.args.get("details")
         detail=[]
-        if current_user.is_authenticated:
-                e=current_user.email.split("@")
-                user=e[0]
-                db.users.insert_one({"game":saved_game,"user":user,"user_id":current_user.id,"type":"details",
-                                    "current_signin_time":current_user.current_sign_in_on,"last_signin_time":current_user.last_sign_in_on})
+        db.users.insert_one({"game":saved_game,"type":"details"})
         name=db.games.find_one({"name":saved_game})["name"]
         detail.append(name)
         page_l=db.games.find_one({"name":saved_game})["link"]

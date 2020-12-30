@@ -2,8 +2,7 @@ from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 
 from blueprints.page import page
-from blueprints.user import user
-from blueprints.user.models import User
+
 
 from extensions import (
     
@@ -37,10 +36,10 @@ def create_app(settings_override=None):
         app.config.update(settings_override)
     extensions(app)
     app.register_blueprint(page)
-    app.register_blueprint(user)
+    # app.register_blueprint(user)
     
     
-    authentication(app, User)
+
     error_templates(app)
     return app
 
@@ -86,24 +85,11 @@ def error_templates(app):
         app.errorhandler(error)(render_status)
 
     return None
-def authentication(app, user_model):
-    """
-    Initialize the Flask-Login extension (mutates the app passed in).
 
-    :param app: Flask application instance
-    :param user_model: Model that contains the authentication information
-    :type user_model: SQLAlchemy model
-    :return: None
-    """
-    login_manager.login_view = 'user.login'
-
-    @login_manager.user_loader
-    def load_user(uid):
-        return user_model.query.get(uid)
 app=create_app()
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 if __name__ == "main":
     app.run()
 
