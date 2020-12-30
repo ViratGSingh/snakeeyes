@@ -55,7 +55,7 @@
 
 <script >
     function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
+    var input;
     input = document.getElementById("games").value;
     let data = await fetch(`https://www.gofetch.in/autocomplete?query=${request.term}`)
                 .then(results => results.json())
