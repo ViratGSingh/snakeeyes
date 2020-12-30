@@ -7,9 +7,6 @@ import json
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
 
-@page.route('/loaderio-89e5a74c98935e38038b0c14e5c7e883/')
-def loader():
-    return render_template('page/loaderio-89e5a74c98935e38038b0c14e5c7e883.html')
 
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
@@ -180,11 +177,3 @@ def search():
 
 
 
-@page.route('/terms')
-def terms():
-    return render_template('page/terms.html')
-
-
-@page.route('/privacy')
-def privacy():
-    return render_template('page/privacy.html')
