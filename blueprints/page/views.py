@@ -1,10 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect,jsonify
 import requests
-from flask_login import (
-    login_required,
-    login_user,
-    current_user,
-    logout_user)
 from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
