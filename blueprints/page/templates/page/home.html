@@ -54,27 +54,7 @@
 
 
 <script type="text/javascript"  src="{{url_for('static', filename='scripts/vendor/node_modules/jquery/dist/jquery.js') }}">
-    $(document).ready(function () {
-    $("#games").autocomplete(
-      
-    {
-        source: async function(request, response) {
-            let data = await fetch(`https://www.gofetch.in/autocomplete?query=${request.term}`)
-                .then(results => results.json())
-                .then(results => results.map(result => {
-                    return { label: result, value: result };
-                }));
-            response(data);
-        },
-        minLength: 3,
-        select: function(event, ui, response) {
-            
-                
-            window.open(`https://www.gofetch.in/search?game=${ui.item.value}`, "_self");
-                
-        }
-    });
-});
+   console.log("hello")
         
         
                 
