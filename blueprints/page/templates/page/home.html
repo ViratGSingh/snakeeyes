@@ -23,25 +23,7 @@
     <div class="input-group" style="padding: 5px; margin:auto;">
       
       
-      <script >
-        function myFunction() {
-        var input;
-        input = document.getElementById("games").value;
-        let data = await fetch(`https://www.gofetch.in/autocomplete?query=${input}`)
-                    .then(results => results.json())
-                    .then(results => results.map(result => {
-                        return { label: result, value: result };
-                    }));
-        console.log(data);
-        minLength: 3;
-           
-        };
-            
-            
-                    
-        
-    
-    </script>
+      
       <input type='text' id='games' onkeyup="myFunction()" name="game"  autocomplete="off" placeholder="Copy Pasta the name here... " style=" width: 500px; height:36px ">
       <label for="games" ></label>
       
@@ -68,7 +50,25 @@
     
     
 </form>
-    
+<script >
+  function myFunction() {
+  var input;
+  input = document.getElementById("games").value;
+  let data = await fetch(`https://www.gofetch.in/autocomplete?query=${input}`)
+              .then(results => results.json())
+              .then(results => results.map(result => {
+                  return { label: result, value: result };
+              }));
+  console.log(data);
+  minLength: 3;
+     
+  }
+      
+      
+              
+  
+
+</script>  
 
 
 
