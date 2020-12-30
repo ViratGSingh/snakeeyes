@@ -59,6 +59,7 @@
           
         {
             source: async function(request, response) {
+                
                 let data = await fetch(`https://www.gofetch.in/autocomplete?query=${request.term}`)
                     .then(results => results.json())
                     .then(results => results.map(result => {
