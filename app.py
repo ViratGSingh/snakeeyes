@@ -1,16 +1,9 @@
 from flask import Flask,render_template
-from flask_sqlalchemy import SQLAlchemy
+
 
 from blueprints.page import page
 
 
-from extensions import (
-    
-    mail,
-    db,
-    csrf,
-    login_manager
-)
 
 app = Flask(__name__)
 def create_app(settings_override=None):
@@ -34,9 +27,9 @@ def create_app(settings_override=None):
     
     if settings_override:
         app.config.update(settings_override)
-    extensions(app)
+    
     app.register_blueprint(page)
-    # app.register_blueprint(user)
+    
     
     
 
@@ -44,21 +37,7 @@ def create_app(settings_override=None):
     return app
 
 
-def extensions(app):
-    """
-    Register 0 or more extensions (mutates the app passed in).
 
-    :param app: Flask application instance
-    :return: None
-    """
-    
-    mail.init_app(app)
-    csrf.init_app(app)
-    db.init_app(app)
-    
-    login_manager.init_app(app)
-
-    return None
 def error_templates(app):
     """
     Register 0 or more custom error pages (mutates the app passed in).
