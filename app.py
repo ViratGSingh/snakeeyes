@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request,redirect
 
 
 from blueprints.page import page
@@ -6,6 +6,7 @@ from blueprints.page import page
 
 
 app = Flask(__name__)
+
 def create_app(settings_override=None):
     """
     Create a Flask application using the app factory pattern.
@@ -66,7 +67,10 @@ def error_templates(app):
     return None
 
 app=create_app()
-
+@app.before_request
+def beforeRequest():
+    if not request.url.startswith('https'):
+        return redirect(request.url.replace('http', 'https', 1))
 # with app.app_context():
 #     db.create_all()
 if __name__ == "main":
