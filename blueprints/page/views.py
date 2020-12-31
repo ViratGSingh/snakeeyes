@@ -67,7 +67,7 @@ def find():
         game=request.form["submit"]
         return redirect(url_for("page.search",game=game))
    
-    elif request.args.get("game"):
+    elif request.args.get("game") :
         name=request.args.get("game")
         db.users.insert_one({"game":name,"type":"search"})
              
@@ -81,7 +81,9 @@ def find():
         return render_template('page/search.html', 
                             games=games) 
                          
-    
+    elif request.args.get("lucky")=="yes":
+        
+        return render_template('page/home.html')
     else:   
         
             
