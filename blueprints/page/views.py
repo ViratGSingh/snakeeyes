@@ -81,13 +81,9 @@ def find():
         return render_template('page/search.html', 
                             games=games) 
                          
-    elif request.form["l-submit"]=="0":
-         return render_template('page/details.html') 
+    
     else:   
         
-            
-            
-
         return render_template('page/home.html')
 
 @page.route("/game",  methods=["GET","POST"])
