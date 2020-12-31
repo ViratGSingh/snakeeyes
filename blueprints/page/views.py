@@ -83,7 +83,7 @@ def find():
                          
     elif request.args.get("lucky")=="yes":
         
-        return render_template('page/home.html')
+        return render_template('page/details.html')
     else:   
         
             
