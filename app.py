@@ -67,10 +67,7 @@ def error_templates(app):
     return None
 
 app=create_app()
-@app.before_request
-def beforeRequest():
-    if not request.url.startswith('https'):
-        return redirect(request.url.replace('http', 'https', 1))
+
 # with app.app_context():
 #     db.create_all()
 if __name__ == "main":
