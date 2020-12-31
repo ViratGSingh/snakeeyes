@@ -11,6 +11,66 @@ db = client["steam"]
 def beforeRequest():
     if not request.url.startswith('https'):
         return redirect(request.url.replace('http', 'https', 1))
+
+@page.route('/lucky',  methods=["GET","POST"])
+def lucky():
+    a=db.games.aggregate([ { "$sample": { "size": 1 } } ])
+    for i in a:
+        game=i
+    saved_game=game
+    detail=[]
+    db.users.insert_one({"game":saved_game,"type":"details"})
+    name=db.games.find_one({"name":saved_game})["name"]
+    detail.append(name)
+    page_l=db.games.find_one({"name":saved_game})["link"]
+    detail.append(page_l)
+    image_l=db.games.find_one({"name":saved_game})["img_url"]
+    detail.append(image_l)
+    p_date=db.games.find_one({"name":saved_game})["release_date"]
+    detail.append(p_date)
+    author=db.games.find_one({"name":saved_game})["developer"]
+    detail.append(author)
+    
+    tags=db.games.find_one({"name":saved_game})["top_tags"]
+    detail.append(tags)
+    desc=db.games.find_one({"name":saved_game})["description"]
+    detail.append(desc)
+    ram=db.games.find_one({"name":saved_game})["min_ram"]
+    detail.append(ram) 
+    rr=db.games.find_one({"name":saved_game})["recent_rating"]
+    rr=rr.split('.')
+    detail.append(rr[0])
+    ar=db.games.find_one({"name":saved_game})["all_rating"]
+    ar=ar.split('.')
+    detail.append(ar[0])
+    price=db.games.find_one({"name":saved_game})["price"]
+    if type(price)==int:
+        price="₹"+str(price)
+    else:
+        price="No info"    
+    detail.append(price)
+    pl=db.games.find_one({"name":saved_game})["os_l"]
+    tpl=[]
+    try:
+        for i in range(0,len(pl)):
+            if pl[i]=="win":
+                pl[i]="Windows"
+                tpl.append(pl[i])
+            elif pl[i]=="mac":
+                pl[i]="Mac"
+                tpl.append(pl[i])
+            elif pl[i]=="linux":
+                pl[i]=="Linux"
+                tpl.append(pl[i])  
+            else:
+                continue  
+
+    except:
+        tpl.append("No info")               
+    detail.append(",".join(tpl))
+    return render_template('page/details.html',detail=detail)   
+    
+
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
     game = request.args.get('query')
