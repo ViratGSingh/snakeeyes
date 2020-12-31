@@ -81,7 +81,7 @@ def find():
         return render_template('page/search.html', 
                             games=games) 
                          
-    elif request.args.get("lucky")=="yes":
+    elif request.args.get("lucky"):
         a=db.games.aggregate([ { "$sample": { "size": 1 } } ])
         for i in a:
            saved_game=i
