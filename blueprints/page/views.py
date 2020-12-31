@@ -7,7 +7,10 @@ import json
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
 
-
+@page.before_request
+def beforeRequest():
+    if not request.url.startswith('https'):
+        return redirect(request.url.replace('http', 'https', 1))
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
     game = request.args.get('query')
