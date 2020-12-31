@@ -1,2 +1,2 @@
-# snakeeyes
- A flask app which recommends itch.io games.
+# Fetch
+ We fetch steam games similar to your favourites.
