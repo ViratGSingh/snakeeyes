@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,redirect
 
 
 from blueprints.page import page
-
+from blueprints.page import user
 
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def create_app(settings_override=None):
         app.config.update(settings_override)
     
     app.register_blueprint(page)
-    
+    app.register_blueprint(user)
     
     
 
