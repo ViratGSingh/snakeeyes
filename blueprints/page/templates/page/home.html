@@ -4,12 +4,13 @@
 
 
 {% block body %}
-  
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="795674792830-q2fe358omqgapge3ar7mk52vtiv8q5vo.apps.googleusercontent.com">
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
   <div class="container">
-    <a href="/login">  
-      <button type="submit" style="margin-right: auto;">Login</button>
-    </a>
+ 
+      <button class="g-signin2"  data-onsuccess="onSignIn" type="submit" style="margin-right: auto;">Login</button>
+    
   </div>
 </nav> 
 <div class="row text-center lg-margin-bottom">
