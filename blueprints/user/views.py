@@ -12,8 +12,8 @@ def beforeRequest():
     if not request.url.startswith('https'):
         return redirect(request.url.replace('http', 'https', 1))
 
-@user.route('/',  methods=["GET","POST"])
-def start():
+@user.route('/login',  methods=["GET","POST"])
+def login():
     
         
 
