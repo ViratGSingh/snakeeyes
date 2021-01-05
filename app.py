@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,redirect
 
 
 from blueprints.page import page
-from blueprints.page import user
+from blueprints.user import user
 
 
 app = Flask(__name__)
