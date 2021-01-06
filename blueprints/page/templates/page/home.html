@@ -9,8 +9,17 @@
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
   <div class="container">
  
-      <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Login</button>
-    
+      <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;"><button type="submit">Sign in</button></button>
+      <a href="#" onclick="signOut();"><button type="submit">Sign out</button></a>
+        <script>
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+          }
+      </script>
+        
   </div>
 </nav> 
 <div class="row text-center lg-margin-bottom">
