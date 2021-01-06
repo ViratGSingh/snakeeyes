@@ -1,8 +1,8 @@
 from flask_wtf import Form
 from wtforms import HiddenField, StringField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, Optional, Regexp
-from wtforms_components import EmailField, Email, Unique
-
+from wtforms_components import EmailField, Email
+from wtforms_alchemy import  Unique
 from config.settings import LANGUAGES
 from lib.util_wtforms import ModelForm, choices_from_dict
 from snakeeyes.blueprints.user.models import User, db
