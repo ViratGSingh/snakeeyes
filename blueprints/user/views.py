@@ -21,7 +21,7 @@ from blueprints.user.forms import (
     SignupForm,
     WelcomeForm,
     UpdateCredentialsForm,
-    UpdateLocaleForm)
+    )
 
 user = Blueprint('user', __name__, template_folder='templates')
 
