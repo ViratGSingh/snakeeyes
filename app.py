@@ -3,7 +3,7 @@ from flask import Flask,render_template,request,redirect
 
 from blueprints.page import page
 from blueprints.user import user
-
+from flask_login import LoginManager
 
 app = Flask(__name__)
 
@@ -68,9 +68,13 @@ def error_templates(app):
     return None
 
 app=create_app()
-
+login_manager = LoginManager()
+login_manager.init_app(app)
 # with app.app_context():
 #     db.create_all()
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 if __name__ == "main":
     app.run()
 
