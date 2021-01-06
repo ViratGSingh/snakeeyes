@@ -114,9 +114,7 @@ app=create_app()
 
 with app.app_context():
     db.create_all()
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
+
 if __name__ == "main":
     app.run()
 
