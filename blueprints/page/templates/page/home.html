@@ -66,9 +66,18 @@
     
     
 </form>
-    
-
-
+<div class="container">
+  <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</button> 
+  <a href="#" onclick="signOut();"><button type="submit">Sign out</button></a>
+  <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+  </script>
+</div>
 <script >
      $(document).ready(function () {
            $("#games").autocomplete(
