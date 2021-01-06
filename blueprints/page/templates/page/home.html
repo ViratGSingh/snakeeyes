@@ -26,8 +26,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
   
   <ul>
-  <li><a href="/login"><button type="submit">Login</button></a></li>
-  
+  {% if current_user.is_authenticated %}
+    <li><a href="/logout"><button type="submit">Logout</button></a></li>
+  {% else %}
+     <li><a href="/login"><button type="submit">Login</button></a></li>
+  {% endif %}
   </ul>
 </nav> 
 <div class="row text-center lg-margin-bottom">
