@@ -11,7 +11,7 @@ from flask_login import (
     login_user,
     logout_user,
 )
-from oauthlib.oauth2 import WebApplicationClient
+
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
 
