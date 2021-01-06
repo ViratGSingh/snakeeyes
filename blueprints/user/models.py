@@ -13,10 +13,7 @@ from itsdangerous import URLSafeTimedSerializer, \
     TimedJSONWebSignatureSerializer
 
 from lib.util_sqlalchemy import ResourceMixin, AwareDateTime
-from blueprints.billing.models.credit_card import CreditCard
-from blueprints.billing.models.subscription import Subscription
-from blueprints.billing.models.invoice import Invoice
-from blueprints.bet.models.bet import Bet
+
 from extensions import db
 
 
