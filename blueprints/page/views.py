@@ -4,11 +4,9 @@ from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
-from flask_login import (
-    
-    current_user
-    
-)
+from flask_login import current_user
+
+
 
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
@@ -59,7 +57,10 @@ def auto():
     
 @page.route('/',  methods=["GET","POST"])
 def start():
-    
+        if current_user.is_authenticated():
+            pass:
+        else:
+            pass    
         
 
         return render_template('page/home.html')

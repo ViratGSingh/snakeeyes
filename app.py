@@ -26,6 +26,7 @@ def create_app(settings_override=None):
     app.config['MAIL_USERNAME'] = "justlistenmusic99@gmail.com"
     app.config['MAIL_PASSWORD'] = "vgs41999"
     
+    
     if settings_override:
         app.config.update(settings_override)
     
