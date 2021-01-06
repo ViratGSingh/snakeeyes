@@ -1,6 +1,6 @@
 from wtforms.validators import ValidationError
 
-from snakeeyes.blueprints.user.models import User
+from blueprints.user.models import User
 
 
 def ensure_identity_exists(form, field):
