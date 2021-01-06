@@ -1,11 +1,12 @@
 from flask import Flask,render_template,request,redirect
-from snakeeyes.blueprints.user import user
+from blueprints.user import user
 from flask_login import current_user
 from blueprints.page import page
 from blueprints.user import user
 from flask_login import LoginManager
-from snakeeyes.blueprints.user.models import User
-from snakeeyes.extensions import (
+from blueprints.user.models import User
+from itsdangerous import URLSafeTimedSerializer
+from extensions import (
     csrf,
     db,
     login_manager
