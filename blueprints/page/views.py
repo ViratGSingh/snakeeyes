@@ -4,7 +4,7 @@ from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
-from flask_login import current_user
+
 
 
 
@@ -57,11 +57,7 @@ def auto():
     
 @page.route('/',  methods=["GET","POST"])
 def start():
-        if current_user.is_authenticated():
-            pass
-        else:
-            pass    
-        
+      
 
         return render_template('page/home.html')
 
