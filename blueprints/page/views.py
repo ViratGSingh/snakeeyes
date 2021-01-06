@@ -58,7 +58,7 @@ def auto():
 @page.route('/',  methods=["GET","POST"])
 def start():
         if current_user.is_authenticated():
-            pass:
+            pass
         else:
             pass    
         
