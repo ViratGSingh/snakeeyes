@@ -4,7 +4,8 @@ from flask import (
     request,
     flash,
     url_for,
-    render_template)
+    render_template,
+    make_response)
 from flask_login import (
     login_required,
     login_user,
@@ -29,6 +30,8 @@ user = Blueprint('user', __name__, template_folder='templates')
 @user.route('/login', methods=['GET', 'POST'])
 @anonymous_required()
 def login():
+   
+    
     form = LoginForm(next=request.args.get('next'))
 
     if form.validate_on_submit():
@@ -58,8 +61,10 @@ def login():
         else:
             flash('Identity or password is incorrect.', 'error')
 
-    return render_template('user/login.html', form=form)
-
+    
+    resp = make_response(render_template('user/login.html', form=form))
+    resp.set_cookie('same-site-cookie', 'foo', samesite='Lax')
+    return resp
 
 @user.route('/logout')
 @login_required
