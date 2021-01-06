@@ -4,8 +4,7 @@
 
 
 {% block body %}
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="795674792830-q2fe358omqgapge3ar7mk52vtiv8q5vo.apps.googleusercontent.com">
+
 <style>
   ul {
     list-style-type: none;
@@ -27,30 +26,8 @@
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
   
   <ul>
-  <li><div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</div></li>
-  <script> 
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-     
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-
-  </script>
+  <li><a href="/login"><button type="submit">Login</button></a></li>
   
-  
-        
-  
-  <li><a href="#" onclick="signOut();"><button type="submit">Sign out</button></a></li>
-      <script>
-          function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-              console.log('User signed out.');
-            });
-          }
-      </script>
   </ul>
 </nav> 
 <div class="row text-center lg-margin-bottom">
