@@ -1,1 +1,1 @@
-from blueprints.user.views import user
+from snakeeyes.blueprints.user.views import user

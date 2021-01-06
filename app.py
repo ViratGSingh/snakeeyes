@@ -1,10 +1,20 @@
 from flask import Flask,render_template,request,redirect
-
-
+from snakeeyes.blueprints.user import user
+from flask_login import current_user
 from blueprints.page import page
 from blueprints.user import user
 from flask_login import LoginManager
+from snakeeyes.blueprints.user.models import User
+from snakeeyes.extensions import (
+    csrf,
+    db,
+    login_manager
+   
+)
+CELERY_TASK_LIST = [
+    'snakeeyes.blueprints.user.tasks'
 
+]
 app = Flask(__name__)
 
 def create_app(settings_override=None):
@@ -39,6 +49,44 @@ def create_app(settings_override=None):
     return app
 
 
+def extensions(app):
+    """
+    Register 0 or more extensions (mutates the app passed in).
+
+    :param app: Flask application instance
+    :return: None
+    """
+
+    csrf.init_app(app)
+    db.init_app(app)
+    login_manager.init_app(app)
+    
+
+    return None
+def authentication(app, user_model):
+    """
+    Initialize the Flask-Login extension (mutates the app passed in).
+
+    :param app: Flask application instance
+    :param user_model: Model that contains the authentication information
+    :type user_model: SQLAlchemy model
+    :return: None
+    """
+    login_manager.login_view = 'user.login'
+
+    @login_manager.user_loader
+    def load_user(uid):
+        return user_model.query.get(uid)
+
+    @login_manager.token_loader
+    def load_token(token):
+        duration = app.config['REMEMBER_COOKIE_DURATION'].total_seconds()
+        serializer = URLSafeTimedSerializer(app.secret_key)
+
+        data = serializer.loads(token, max_age=duration)
+        user_uid = data[0]
+
+        return user_model.query.get(user_uid)
 
 def error_templates(app):
     """
@@ -68,10 +116,9 @@ def error_templates(app):
     return None
 
 app=create_app()
-login_manager = LoginManager()
-login_manager.init_app(app)
-# with app.app_context():
-#     db.create_all()
+
+with app.app_context():
+    db.create_all()
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
