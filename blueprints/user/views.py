@@ -12,9 +12,9 @@ from flask_login import (
     logout_user)
 
 from lib.safe_next_url import safe_next_url
-from snakeeyes.blueprints.user.decorators import anonymous_required
-from snakeeyes.blueprints.user.models import User
-from snakeeyes.blueprints.user.forms import (
+from blueprints.user.decorators import anonymous_required
+from blueprints.user.models import User
+from blueprints.user.forms import (
     LoginForm,
     BeginPasswordResetForm,
     PasswordResetForm,
