@@ -7,13 +7,13 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="795674792830-q2fe358omqgapge3ar7mk52vtiv8q5vo.apps.googleusercontent.com">
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
-  <div class="container">
- 
-      <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;"><button type="submit">Sign in</button></button>
-      
+  
+  <ul>
+  <li><div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</div></li>
+    
         
-  </div>
-  <a href="#" onclick="signOut();"><button type="submit">Sign out</button></a>
+  
+  <li><a href="#" onclick="signOut();"><button type="submit">Sign out</button></a></li>
       <script>
           function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
@@ -22,6 +22,7 @@
             });
           }
       </script>
+  </ul>
 </nav> 
 <div class="row text-center lg-margin-bottom">
     
@@ -66,12 +67,12 @@
     
     
 </form>
-<div class="row text-center lg-margin-bottom">
-  
-  <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</button> 
 
   
-</div>
+  
+
+  
+
 
 <script >
      $(document).ready(function () {
