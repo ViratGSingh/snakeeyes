@@ -4,6 +4,14 @@ from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from oauthlib.oauth2 import WebApplicationClient
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")
 db = client["steam"]
 
@@ -54,7 +62,15 @@ def auto():
 @page.route('/',  methods=["GET","POST"])
 def start():
     
-        
+        if current_user.is_authenticated:
+            return (
+                "<p>Hello, {}! You're logged in! Email: {}</p>"
+                "<div><p>Google Profile Picture:</p>"
+                '<img src="{}" alt="Google profile pic"></img></div>'
+                '<a class="button" href="/logout">Logout</a>'.format(
+                    current_user.name, current_user.email, current_user.profile_pic
+                )
+            )
 
         return render_template('page/home.html')
 
