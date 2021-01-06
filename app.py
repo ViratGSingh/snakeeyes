@@ -47,6 +47,8 @@ def create_app(settings_override=None):
     
 
     error_templates(app)
+    extensions(app)
+    authentication(app)
     return app
 
 
