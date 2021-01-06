@@ -26,14 +26,7 @@ class User(UserMixin, ResourceMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
 
-    # Relationships.
-    credit_card = db.relationship(CreditCard, uselist=False, backref='users',
-                                  passive_deletes=True)
-    subscription = db.relationship(Subscription, uselist=False,
-                                   backref='users', passive_deletes=True)
-    invoices = db.relationship(Invoice, backref='users', passive_deletes=True)
-    bets = db.relationship(Bet, backref='bets', passive_deletes=True)
-
+    
     # Authentication.
     role = db.Column(db.Enum(*ROLE, name='role_types', native_enum=False),
                      index=True, nullable=False, server_default='member')
