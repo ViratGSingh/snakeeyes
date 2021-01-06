@@ -68,39 +68,9 @@
 </form>
 <div class="row text-center lg-margin-bottom">
   
-    <style> 
-      button[type=submit]{
-        background-color:  #c2212b;
-        border: black;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: bold;
-        
-        overflow: hidden;
-        z-index: 1;
-        transition: 0.5s;
-        
-      
-        cursor: pointer;
-      }
-      button[type=submit]:hover {
-            --c:#f1ad20;
-            background-color: var(--c);
-            color: black;
-            
-      }
-  </style> 
-  <button type="submit" class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</button> 
+  <div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</button> 
 
-  <a href="#" onclick="signOut();"><button type="submit">Sign out</button></a>
-  <script>
-        function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
-        }
-  </script>
+  
 </div>
 
 <script >
