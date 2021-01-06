@@ -5,11 +5,9 @@ page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
 from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
+    
+    current_user
+    
 )
 
 client = pymongo.MongoClient("mongodb+srv://wooshir:vgs41999@items.uxp6f.mongodb.net/test?retryWrites=true&w=majority")

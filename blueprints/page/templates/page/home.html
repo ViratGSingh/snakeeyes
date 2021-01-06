@@ -28,7 +28,17 @@
   
   <ul>
   <li><div class="g-signin2"  data-onsuccess="onSignIn"  style="margin-right: auto;">Sign in</div></li>
-    
+  <script> 
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+     
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
+  </script>
+  
         
   
   <li><a href="#" onclick="signOut();"><button type="submit">Sign out</button></a></li>
