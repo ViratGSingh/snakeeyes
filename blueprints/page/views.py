@@ -121,7 +121,7 @@ def search():
                                     }
                                     )
                 else:
-                    name=request.args.get("recommend"))
+                    name=request.args.get("recommend")
                     game=db.games.find_one({"name":name})
                     db.users.insert_one({"user":current_user.email
                                         ,"games":[game["name"]]
