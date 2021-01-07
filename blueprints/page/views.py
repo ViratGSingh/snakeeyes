@@ -4,7 +4,7 @@ from flask import request,redirect,url_for
 page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
-
+from flask_login import current_user
 
 
 
@@ -72,8 +72,38 @@ def find():
    
     elif request.args.get("game") :
         name=request.args.get("game")
-        db.users.insert_one({"game":name,"type":"search"})
-             
+        if current_user.is_authenticated:
+            try:
+                user=db.users.find_one({"user":current_user.email})
+                game=db.games.find_one({"name":name})
+                games=user["games"].append(name)
+                tags=user["tags"].append(",".join(game["tags"]))
+                rating_codes=user["rating_codes"].append(game["rating_code"])
+                db.users.update(
+                                { "user": current_user.email },
+                                {
+                                    "$inc": { "count": 1 },
+                                    "$set": {
+                                                "tags": tags,
+                                                "games": games,
+                                                "rating_codes": rating_codes,
+                                                "total_games":0,
+                                                "type":"search"
+                                    }
+                                    
+                                    
+                                }
+                                )
+            except:
+                game=db.games.find_one({"name":name})
+                db.users.insert_one({"user":current_user.email
+                                    ,"games":[game["name"]]
+                                    ,"type":"search"
+                                    ,"tags":[",".join(game["tags"])]
+                                    ,"count":0
+                                    ,"rating_codes":[game["rating_code"]]})
+        else:
+                pass       
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
@@ -98,7 +128,10 @@ def search():
         game=request.args.get("recommend")
         if game:
 
-            db.users.insert_one({"game":game,"type":"recommend"})
+            # if current_user.is_authenticated:
+            #     db.users.insert_one({"game":game,"type":"recommend"})
+            # else:
+            #     pass    
             name=game.replace(".","*")
             name=name.replace(" ","_")
             name=name.replace("$","&")
