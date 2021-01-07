@@ -72,7 +72,41 @@ def find():
    
     elif request.args.get("game") :
         name=request.args.get("game")
-        
+        if current_user.is_authenticated:
+                
+                user=db.users.find_one({"user":current_user.email})
+                if user:
+                    user=db.users.find_one({"user":current_user.email})
+                    name=request.args.get("game")
+                    game=db.games.find_one({"name":name})
+                    games=user["games"]+[name]
+                    tags=user["tags"]+[",".join(game["tags"])]
+                    rating_codes=user["rating_codes"]+game["rating_code"]
+                    db.users.update(
+                                    { "user": current_user.email },
+                                    {
+                                        "$inc": { "count": 1 },
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    "type":"search"
+                                        }
+                                        
+                                        
+                                    }
+                                    )
+                else:
+                    name=request.args.get("game")
+                    game=db.games.find_one({"name":name})
+                    db.users.insert_one({"user":current_user.email
+                                        ,"games":[game["name"]]
+                                        ,"type":"search"
+                                        ,"tags":[",".join(game["tags"])]
+                                        ,"count":0
+                                        ,"rating_codes":[game["rating_code"]]})
+        else:
+                pass 
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
@@ -105,7 +139,7 @@ def search():
                     game=db.games.find_one({"name":name})
                     games=user["games"]+[name]
                     tags=user["tags"]+[",".join(game["tags"])]
-                    rating_codes=user["rating_codes"].append(game["rating_code"])
+                    rating_codes=user["rating_codes"]+game["rating_code"]
                     db.users.update(
                                     { "user": current_user.email },
                                     {
