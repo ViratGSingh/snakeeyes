@@ -73,8 +73,10 @@ def find():
     elif request.args.get("game") :
         name=request.args.get("game")
         if current_user.is_authenticated:
-            try:
-                user=db.users.find_one({"user":current_user.email})
+            
+            user=db.users.find_one({"user":current_user.email})
+            if user:
+                name=request.args.get("game")
                 game=db.games.find_one({"name":name})
                 games=user["games"].append(name)
                 tags=user["tags"].append(",".join(game["tags"]))
@@ -94,7 +96,7 @@ def find():
                                     
                                 }
                                 )
-            except:
+            else:
                 game=db.games.find_one({"name":name})
                 db.users.insert_one({"user":current_user.email
                                     ,"games":[game["name"]]
