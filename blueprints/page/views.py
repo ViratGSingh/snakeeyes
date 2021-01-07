@@ -88,7 +88,7 @@ def find():
                     
                     user=db.search.find_one({"user":current_user.email})
                     name=request.args.get("game")
-                    
+                    req=db.recom.find_one({"Key": name})
                     game=req["Autocomplete"]
                     games=user["games"]+[name]
                     tags=user["tags"]+[",".join(game["tags"])]
@@ -109,7 +109,7 @@ def find():
                                     )
                 else:
                     name=request.args.get("game")
-                
+                    req=db.recom.find_one({"Key": name})
                     game=req["Autocomplete"]
                     db.search.insert_one({"user":current_user.email
                                         ,"games":[game["name"]]
