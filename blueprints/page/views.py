@@ -103,8 +103,8 @@ def search():
                     user=db.users.find_one({"user":current_user.email})
                     name=request.args.get("recommend")
                     game=db.games.find_one({"name":name})
-                    games=user["games"].append(name)
-                    tags=user["tags"].append(",".join(game["tags"]))
+                    games=user["games"]+[name]
+                    tags=user["tags"]+[",".join(game["tags"])]
                     rating_codes=user["rating_codes"].append(game["rating_code"])
                     db.users.update(
                                     { "user": current_user.email },
