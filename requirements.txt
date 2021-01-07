@@ -14,7 +14,6 @@ wtforms_components==0.10.4
 wtforms_alchemy==0.17.0
 psycopg2-binary==2.8.6
 pytz==2020.4
-flask==0.8
 numpy==1.6.2
 scikit-learn==0.16.1
 scipy==0.14.0
