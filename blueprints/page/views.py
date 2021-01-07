@@ -72,40 +72,7 @@ def find():
    
     elif request.args.get("game") :
         name=request.args.get("game")
-        if current_user.is_authenticated:
-            
-            user=db.users.find_one({"user":current_user.email})
-            if user:
-                name=request.args.get("game")
-                game=db.games.find_one({"name":name})
-                games=user["games"].append(name)
-                tags=user["tags"].append(",".join(game["tags"]))
-                rating_codes=user["rating_codes"].append(game["rating_code"])
-                db.users.update(
-                                { "user": current_user.email },
-                                {
-                                    "$inc": { "count": 1 },
-                                    "$set": {
-                                                "tags": tags,
-                                                "games": games,
-                                                "rating_codes": rating_codes,
-                                                "total_games":0,
-                                                "type":"search"
-                                    }
-                                    
-                                    
-                                }
-                                )
-            else:
-                game=db.games.find_one({"name":name})
-                db.users.insert_one({"user":current_user.email
-                                    ,"games":[game["name"]]
-                                    ,"type":"search"
-                                    ,"tags":[",".join(game["tags"])]
-                                    ,"count":0
-                                    ,"rating_codes":[game["rating_code"]]})
-        else:
-                pass       
+        
         name=name.lower()
         name=name.replace(".","*")
         name=name.replace(" ","_")
@@ -127,13 +94,44 @@ def search():
    
               
     if request.args.get("recommend"):
-        game=request.args.get("recommend")
+            game=request.args.get("recommend")
         if game:
-
-            # if current_user.is_authenticated:
-            #     db.users.insert_one({"game":game,"type":"recommend"})
-            # else:
-            #     pass    
+                
+            if current_user.is_authenticated:
+                
+                user=db.users.find_one({"user":current_user.email})
+                if user:
+                    name=request.args.get("recommend"))
+                    game=db.games.find_one({"name":name})
+                    games=user["games"].append(name)
+                    tags=user["tags"].append(",".join(game["tags"]))
+                    rating_codes=user["rating_codes"].append(game["rating_code"])
+                    db.users.update(
+                                    { "user": current_user.email },
+                                    {
+                                        "$inc": { "count": 1 },
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    "total_games":0,
+                                                    "type":"recommend"
+                                        }
+                                        
+                                        
+                                    }
+                                    )
+                else:
+                    name=request.args.get("recommend"))
+                    game=db.games.find_one({"name":name})
+                    db.users.insert_one({"user":current_user.email
+                                        ,"games":[game["name"]]
+                                        ,"type":"recommend"
+                                        ,"tags":[",".join(game["tags"])]
+                                        ,"count":0
+                                        ,"rating_codes":[game["rating_code"]]})
+            else:
+                    pass        
             name=game.replace(".","*")
             name=name.replace(" ","_")
             name=name.replace("$","&")
