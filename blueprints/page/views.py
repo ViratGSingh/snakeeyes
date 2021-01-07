@@ -216,7 +216,7 @@ def search():
                 pass 
         saved_game=request.args.get("details")
         detail=[]
-        db.users.insert_one({"game":saved_game,"type":"details"})
+        
         name=db.games.find_one({"name":saved_game})["name"]
         detail.append(name)
         page_l=db.games.find_one({"name":saved_game})["link"]
