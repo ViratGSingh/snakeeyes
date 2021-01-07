@@ -114,7 +114,6 @@ def search():
                                                     "tags": tags,
                                                     "games": games,
                                                     "rating_codes": rating_codes,
-                                                    "total_games":0,
                                                     "type":"recommend"
                                         }
                                         
