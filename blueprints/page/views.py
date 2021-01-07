@@ -132,7 +132,7 @@ def search():
             else:
                     pass 
             name=request.args.get("recommend")       
-            name=game.replace(".","*")
+            name=name.replace(".","*")
             name=name.replace(" ","_")
             name=name.replace("$","&")
             name=name.lower()
