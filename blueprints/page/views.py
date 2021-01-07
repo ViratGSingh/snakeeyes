@@ -95,8 +95,7 @@ def search():
               
     if request.args.get("recommend"):
             game=request.args.get("recommend")
-        if game:
-                
+            
             if current_user.is_authenticated:
                 
                 user=db.users.find_one({"user":current_user.email})
@@ -140,7 +139,8 @@ def search():
             for i in req:
                 games=i[name]  
             return render_template('page/search.html', 
-                                games=games)  
+                                games=games) 
+             
                                   
     elif request.args.get("details"):
 
