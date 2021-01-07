@@ -88,7 +88,7 @@ def find():
                     
                     user=db.search.find_one({"user":current_user.email})
                     name=request.args.get("game")
-                    db.games.create_index([("name", pymongo.TEXT)])
+                    
                     game=req["Autocomplete"]
                     games=user["games"]+[name]
                     tags=user["tags"]+[",".join(game["tags"])]
