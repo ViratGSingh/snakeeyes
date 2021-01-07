@@ -72,6 +72,15 @@ def find():
    
     elif request.args.get("game") :
         name=request.args.get("game")
+       
+        name=name.lower()
+        name=name.replace(".","*")
+        name=name.replace(" ","_")
+        name=name.replace("$","&")
+        req=db.recom.find({"Key": name})
+        for i in req:
+            games=i[name]  
+        
         if current_user.is_authenticated:
                 
                 user=db.search.find_one({"user":current_user.email})
@@ -80,7 +89,7 @@ def find():
                     user=db.search.find_one({"user":current_user.email})
                     name=request.args.get("game")
                     db.games.create_index([("name", pymongo.TEXT)])
-                    game=db.games.find_one( { "$text": { "$search": name }})
+                    game=req["Autocomplete"]
                     games=user["games"]+[name]
                     tags=user["tags"]+[",".join(game["tags"])]
                     rating_codes=user["rating_codes"]+[game["rating_code"]]
@@ -100,8 +109,8 @@ def find():
                                     )
                 else:
                     name=request.args.get("game")
-                    db.games.create_index([("name", pymongo.TEXT)])
-                    game=db.games.find_one( { "$text": { "$search": name }})
+                
+                    game=req["Autocomplete"]
                     db.search.insert_one({"user":current_user.email
                                         ,"games":[game["name"]]
                                       
@@ -110,13 +119,6 @@ def find():
                                         ,"rating_codes":[game["rating_code"]]})
         else:
                 pass 
-        name=name.lower()
-        name=name.replace(".","*")
-        name=name.replace(" ","_")
-        name=name.replace("$","&")
-        req=db.recom.find({"Key": name})
-        for i in req:
-            games=i[name]  
         return render_template('page/search.html', 
                             games=games) 
                          
