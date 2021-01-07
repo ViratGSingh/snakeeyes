@@ -130,14 +130,15 @@ def search():
                                         ,"count":0
                                         ,"rating_codes":[game["rating_code"]]})
             else:
-                    pass        
+                    pass 
+            name=request.args.get("recommend")       
             name=game.replace(".","*")
             name=name.replace(" ","_")
             name=name.replace("$","&")
             name=name.lower()
-            req=db.recom.find({"Key": name})
-            for i in req:
-                games=i[name]  
+            req=db.recom.find_one({"Key": name})
+            games=req[name]
+                  
             return render_template('page/search.html', 
                                 games=games) 
              
