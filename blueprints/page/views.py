@@ -76,9 +76,11 @@ def find():
                 
                 user=db.search.find_one({"user":current_user.email})
                 if user:
+                    
                     user=db.search.find_one({"user":current_user.email})
                     name=request.args.get("game")
-                    game=db.games.find_one({"name":name})
+                    db.games.create_index([("name", pymongo.TEXT)])
+                    game=db.games.find_one( { "$text": { "$search": name }})
                     games=user["games"]+[name]
                     tags=user["tags"]+[",".join(game["tags"])]
                     rating_codes=user["rating_codes"]+[game["rating_code"]]
@@ -98,7 +100,8 @@ def find():
                                     )
                 else:
                     name=request.args.get("game")
-                    game=db.games.find_one({"name":name})
+                    db.games.create_index([("name", pymongo.TEXT)])
+                    game=db.games.find_one( { "$text": { "$search": name }})
                     db.search.insert_one({"user":current_user.email
                                         ,"games":[game["name"]]
                                       
