@@ -100,7 +100,7 @@ def search():
                 
                 user=db.users.find_one({"user":current_user.email})
                 if user:
-                    name=request.args.get("recommend"))
+                    name=request.args.get("recommend")
                     game=db.games.find_one({"name":name})
                     games=user["games"].append(name)
                     tags=user["tags"].append(",".join(game["tags"]))
