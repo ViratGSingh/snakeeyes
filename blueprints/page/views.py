@@ -79,7 +79,7 @@ def find():
         name=name.replace("$","&")
         req=db.recom.find({"Key": name})
         for i in req:
-            games=i[name]  
+            sgames=i[name]  
         
         if current_user.is_authenticated:
                 
@@ -122,7 +122,7 @@ def find():
         else:
                 pass 
         return render_template('page/search.html', 
-                            games=games) 
+                            games=sgames) 
                          
     
     else:   
