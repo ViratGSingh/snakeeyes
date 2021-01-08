@@ -63,6 +63,64 @@ def start():
         return render_template('page/home.html')
 
 
+@page.route('/discover',  methods=["GET","POST"])
+def discover():
+    if request.method=="POST":
+        game=request.form["submit"]
+        return redirect(url_for("page.discover",game=game))
+   
+    else:
+        
+        
+        if current_user.is_authenticated:
+                
+                user=db.search.find_one({"user":current_user.email})
+                sgames=db.discover.find_one({"user":current_user.email})
+                sgames=sgames["items"]
+                if user:
+                    
+                    user=db.search.find_one({"user":current_user.email})
+                    
+                    req=db.recom.find_one({"Key": name})
+                    name=req["Autocomplete"]
+                    games=user["games"]+[name]
+                    game=db.games.find_one({"name":name})
+                    tags=user["tags"]+[",".join(game["tags"])]
+                    rating_codes=user["rating_codes"]+[game["rating_code"]]
+                    db.search.update(
+                                    { "user": current_user.email },
+                                    {
+                                        "$inc": { "count": 1 },
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    
+                                        }
+                                        
+                                        
+                                    }
+                                    )
+                else:
+                    
+                    req=db.recom.find_one({"Key": name})
+                    name=req["Autocomplete"]
+                    game=db.games.find_one({"name":name})
+                    db.search.insert_one({"user":current_user.email
+                                        ,"games":[game["name"]]
+                                      
+                                        ,"tags":[",".join(game["tags"])]
+                                        ,"count":0
+                                        ,"rating_codes":[game["rating_code"]]})
+        else:
+                return render_template('page/home.html')
+        return render_template('page/search.html', 
+                            games=sgames) 
+                         
+    
+    
+
+
 
 @page.route('/search',  methods=["GET","POST"])
 def find():
