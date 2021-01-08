@@ -70,7 +70,7 @@ def discover():
         
         if current_user.is_authenticated:
                 
-                user=db.search.find_one({"user":current_user.email})
+                
                 sgames=db.discover.find_one({"user":current_user.email})
                 sgames=sgames["items"]
                 
