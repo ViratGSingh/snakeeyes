@@ -65,11 +65,7 @@ def start():
 
 @page.route('/discover',  methods=["GET","POST"])
 def discover():
-    if request.method=="POST":
-        game=request.form["submit"]
-        return redirect(url_for("page.discover",game=game))
-   
-    else:
+    
         
         
         if current_user.is_authenticated:
