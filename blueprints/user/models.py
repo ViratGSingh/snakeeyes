@@ -115,7 +115,7 @@ class User(UserMixin, ResourceMixin, db.Model):
         reset_token = u.serialize_token()
 
         # This prevents circular imports.
-        from snakeeyes.blueprints.user.tasks import (
+        from blueprints.user.tasks import (
             deliver_password_reset_email)
         deliver_password_reset_email.delay(u.id, reset_token)
 
@@ -164,37 +164,37 @@ class User(UserMixin, ResourceMixin, db.Model):
 
         return False
 
-    @classmethod
-    def bulk_delete(cls, ids):
-        """
-        Override the general bulk_delete method because we need to delete them
-        one at a time while also deleting them on Stripe.
+    # @classmethod
+    # def bulk_delete(cls, ids):
+    #     """
+    #     Override the general bulk_delete method because we need to delete them
+    #     one at a time while also deleting them on Stripe.
 
-        :param ids: List of ids to be deleted
-        :type ids: list
-        :return: int
-        """
-        delete_count = 0
+    #     :param ids: List of ids to be deleted
+    #     :type ids: list
+    #     :return: int
+    #     """
+    #     delete_count = 0
 
-        for id in ids:
-            user = User.query.get(id)
+    #     for id in ids:
+    #         user = User.query.get(id)
 
-            if user is None:
-                continue
+    #         if user is None:
+    #             continue
 
-            if user.payment_id is None:
-                user.delete()
-            else:
-                subscription = Subscription()
-                cancelled = subscription.cancel(user=user)
+    #         if user.payment_id is None:
+    #             user.delete()
+    #         else:
+    #             subscription = Subscription()
+    #             cancelled = subscription.cancel(user=user)
 
-                # If successful, delete it locally.
-                if cancelled:
-                    user.delete()
+    #             # If successful, delete it locally.
+    #             if cancelled:
+    #                 user.delete()
 
-            delete_count += 1
+    #         delete_count += 1
 
-        return delete_count
+    #     return delete_count
 
     def is_active(self):
         """
