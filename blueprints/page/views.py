@@ -111,14 +111,12 @@ def discover():
                                                 ,"count":0
                                                 ,"rating_codes":[game["rating_code"]]})
                 else:
-                    pass
-                return render_template('page/search.html', 
+                    
+                    return render_template('page/search.html', 
                             games=sgames)
         else:
                 return render_template('page/home.html')
-        return render_template('page/search.html', 
-                            games=sgames) 
-                         
+        
     
     
 
