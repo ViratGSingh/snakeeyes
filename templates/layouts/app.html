@@ -32,20 +32,17 @@
                 Discover
               </a>
             </li>
-            
-            {% if current_user.is_authenticated %}
-            <li>
-              <a href="/logout">
-               Logout
-              </a>
-            </li>
-            {% else %}
             <li>
               <a href="/login">
                 Login
               </a>
             </li>
-            {% endif %}
+            <li>
+              <a href="/signup">
+                Signup
+              </a>
+            </li>
+            
             <!-- <li>
               <a href="#">
                 <span class="label label-default">Leaderboard</span>
@@ -59,7 +56,7 @@
             </li>
            -->
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <!-- <ul class="nav navbar-nav navbar-right">
           {% if current_user.role == 'admin' %}
             <li>
               {% include 'admin/_menu.html' %}
@@ -83,7 +80,7 @@
               <li><a href="{{ url_for('user.login') }}">Log in</a></li>
               <li><a href="{{ url_for('user.signup') }}">Sign up</a></li>
           {% endif %}
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>
