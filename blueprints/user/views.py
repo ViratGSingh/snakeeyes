@@ -150,10 +150,10 @@ def welcome():
     return render_template('user/welcome.html', form=form)
 
 
-@user.route('/wishlist')
-@login_required
-def settings():
-    return render_template('user/settings.html')
+# @user.route('/wishlist')
+# @login_required
+# def settings():
+#     return render_template('user/settings.html')
 
 
 @user.route('/settings/update_credentials', methods=['GET', 'POST'])
