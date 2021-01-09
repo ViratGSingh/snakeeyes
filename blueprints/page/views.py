@@ -71,47 +71,87 @@ def discover():
         
         if current_user.is_authenticated:
                 
-                user=db.search.find_one({"user":current_user.email})
+                
                 sgames=db.discover.find_one({"user":current_user.email})
-                sgames=sgames["items"]
-                sgames=sgames["items"]
-                name=request.args.get("recommend")
-                if name:
-                        user=db.mlt.find_one({"user":current_user.email})
-                        if user:
-                            user=db.mlt.find_one({"user":current_user.email})
-                            
-                            game=db.games.find_one({"name":name})
-                            games=user["games"]+[name]
-                            tags=user["tags"]+[",".join(game["tags"])]
-                            rating_codes=user["rating_codes"]+[game["rating_code"]]
-                            db.mlt.update(
-                                            { "user": current_user.email },
-                                            {
-                                                "$inc": { "count": 1 },
-                                                "$set": {
-                                                            "tags": tags,
-                                                            "games": games,
-                                                            "rating_codes": rating_codes,
-                                                            
-                                                }
-                                                
-                                                
-                                            }
-                                            )
+                
+                if sgames:
+                        sgames=sgames["items"]
+                        sgames=sgames["items"]
+                        name=request.args.get("recommend")
+                        duser=db.details.find_one({"user":current_user.email})
+                        if name:
+                                user=db.mlt.find_one({"user":current_user.email})
+                                if user:
+                                    user=db.mlt.find_one({"user":current_user.email})
+                                    
+                                    game=db.games.find_one({"name":name})
+                                    games=user["games"]+[name]
+                                    tags=user["tags"]+[",".join(game["tags"])]
+                                    rating_codes=user["rating_codes"]+[game["rating_code"]]
+                                    db.mlt.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        "$inc": { "count": 1 },
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
+                                else:
+                                    name=request.args.get("recommend")
+                                    game=db.games.find_one({"name":name})
+                                    db.mlt.insert_one({"user":current_user.email
+                                                        ,"games":[game["name"]]
+                                                    
+                                                        ,"tags":[",".join(game["tags"])]
+                                                        ,"count":0
+                                                        ,"rating_codes":[game["rating_code"]]})
+                        
+                        
+                        elif duser:
+                                user=db.details.find_one({"user":current_user.email})
+                                if user:
+                                    name=request.args.get("details")
+                                    game=db.games.find_one({"name":name})
+                                    games=user["games"]+[name]
+                                    tags=user["tags"]+[",".join(game["tags"])]
+                                    rating_codes=user["rating_codes"]+[game["rating_code"]]
+                                    db.details.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        "$inc": { "count": 1 },
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
+                                else:
+                                    name=request.args.get("details")
+                                    game=db.games.find_one({"name":name})
+                                    db.details.insert_one({"user":current_user.email
+                                                        ,"games":[game["name"]]
+                                                    
+                                                        ,"tags":[",".join(game["tags"])]
+                                                        ,"count":0
+                                                        ,"rating_codes":[game["rating_code"]]})
                         else:
-                            name=request.args.get("recommend")
-                            game=db.games.find_one({"name":name})
-                            db.mlt.insert_one({"user":current_user.email
-                                                ,"games":[game["name"]]
-                                            
-                                                ,"tags":[",".join(game["tags"])]
-                                                ,"count":0
-                                                ,"rating_codes":[game["rating_code"]]})
+                                pass
+                
+                        return render_template('page/search.html', 
+                                    games=sgames)
+
                 else:
-                    pass
-                return render_template('page/search.html', 
-                            games=sgames)
+                        return render_template('page/home.html')                   
         else:
                 return render_template('page/home.html')
         
