@@ -70,9 +70,9 @@
                     <a href="{{ detail[1] }}" target="_blank" rel="noopener noreferrer">
                       <h3 class="card-title" id="game" >{{ detail[0] }}</h3> 
                     </a> 
-                    <form action="/addtowishlist">
-                      <button type="submit" name="wishlist" value="{{ detail[0] }}">More Like This</button>
-                    </form> 
+                    
+                    <a href="/addtowishlist"><button type="submit" name="wishlist" value="{{ detail[0] }}">Add to wishlist</button></a>
+                    
                     <br>
                     <span>
                       <span style="font-size: large;">Developer: </span>
