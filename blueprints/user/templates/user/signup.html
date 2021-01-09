@@ -69,4 +69,64 @@
       {% endcall %}
     </div>
   </div>
+  <div class="footer">
+    <!-- Grid container -->
+    <div class="container" style="padding: 20px;">
+      <div class="row">
+  
+      
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <!-- <a href="{{ url_for('page.start') }}">
+            <img src="{{ url_for('static', filename='images/snake-eyes.jpg') }}"
+                 class="img-responsive"
+                 width="229" height="50" title="Snake Eyes" alt="Snake Eyes"/>
+          </a>
+          <br> -->
+          <p class="footer-links" style="float:left;font-size:15px;padding: 15px;">
+            <a href="/" style="font-size: 15px;">Home</a>
+            {% if current_user.is_authenticated %}
+            <a href="/discover" style="font-size: 15px;">Discover</a>
+            {% else %}
+            <a href="/login" style="font-size: 15px;">Discover</a>
+            {% endif %}
+           
+          
+          </p>
+  
+        </div>
+        <!--Grid column-->
+  
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0" style="float: right;">
+          
+              <!-- <br>
+              <br> -->
+            
+              <a href="https://twitter.com/fetchmlt" target="_blank" rel="noopener noreferrer" class="fa fa-twitter"></a>
+    
+  
+              <a href="https://www.instagram.com/fetchmlt/"  target="_blank" rel="noopener noreferrer" class="fa fa-instagram"></a>
+            
+              <a href="https://www.linkedin.com/company/fetchmlt" target="_blank" rel="noopener noreferrer" class="fa fa-linkedin"></a>
+            
+              <a href="https://github.com/ViratGSingh/snakeeyes" target="_blank" rel="noopener noreferrer" class="fa fa-github"></a>
+              <a href="mailto:fetchmlt@gmail.com" target="_blank" rel="noopener noreferrer" class="fa fa-envelope"></a>
+            
+            
+         
+        </div>
+        <!--Grid column-->
+      </div>
+    </div>
+        <!--Grid column-->
+        
+        <!--Grid column-->
+     
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    
+    <!-- Copyright -->
+  </div>
 {% endblock %}
