@@ -67,11 +67,16 @@
                   <div class="card-body" >
                     
                     <span>
-                      <a href="{{ detail[1] }}" target="_blank" rel="noopener noreferrer">
+                      <span> 
+                       <a href="{{ detail[1] }}" target="_blank" rel="noopener noreferrer">
                         <h3 class="card-title" id="game" >{{ detail[0] }}</h3> 
-                      </a> 
-                      <a href="/wishlist"><button type="submit">Add to wishlist</button></a>
+                       </a> 
+                      </span> 
+                      <span>
+                        <a href="/wishlist"><button type="submit">Add to wishlist</button></a>
+                      </span>
                     </span>
+                    <br>
                     <span>
                       <span style="font-size: large;">Developer: </span>
                       <span style="font-size: larger;">{{detail[4] }}</span> 
