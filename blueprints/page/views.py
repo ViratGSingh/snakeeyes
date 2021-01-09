@@ -113,7 +113,7 @@ def discover():
                 return render_template('page/search.html', 
                             games=sgames)
         else:
-                return render_template('page/signup.html')
+                return render_template('page/home.html')
         
     
     
