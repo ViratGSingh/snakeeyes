@@ -1,0 +1,144 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Fetch{% endblock %}
+
+
+{% block body %}
+
+<style>
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color:white;
+  }
+  
+  
+  
+  
+  
+  </style>
+<!-- <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
+  
+  <ul>
+  {% if current_user.is_authenticated %}
+    <li style="float: left; margin-right: 15px;"><a href="/logout"><button type="submit">Logout</button></a></li>
+    <li style="float: left; "><a href="/discover"><button type="submit">Discover</button></a></li>
+  {% else %}
+     <li style="float: left; margin-right: 15px;"><a href="/login"><button type="submit">Login</button></a></li>
+     <li style="float: left;"><a href="/signup"><button type="submit">Discover</button></a></li>
+  {% endif %}
+  </ul>
+</nav>  -->
+<div class="row text-center lg-margin-bottom">
+    
+  <h1></h1>
+</div>
+<div class="row text-center lg-margin-bottom">
+  
+  
+  <a href="{{ url_for('page.start') }}" >
+    <img src="{{ url_for('static', filename='images/fetch.png') }}"
+         class="img-responsive"
+         width="550" height="400" title="Snake Eyes" alt="Snake Eyes" style="padding: 5px; margin:auto;">
+  </a>
+  <br>  
+  <form action="/search">
+    <div class="input-group" style="padding: 5px; margin:auto;">
+      
+      
+      
+      <input type='text' id='games' name="game"  autocomplete="off" placeholder="steam games more like..." style=" width: 500px; height:36px ">
+      <label for="games" ></label>
+      
+        
+      
+        
+      
+      
+        
+      <span class="input-group-btn" style="width:40px;">
+        <button id="search-this" type="submit" class="pull-right btn btn-default search-btn">
+            <i class="fa fa-search"></i>
+        </button>
+      </span>
+      
+    </div> 
+    <br>
+    
+      
+      
+    
+    
+    
+</form>
+<div class="row text-center lg-margin-bottom">
+  {% if current_user.is_authenticated %}
+      <a href="/logout" style="margin-right: 15px"><button type="submit" >Logout</button></a>
+      <a href="/discover"><button type="submit" >Discover</button></a>
+  {% else %}
+       <a href="/login" style="margin-right: 15px"><button type="submit" >Login</button></a>
+      <a href="/signup"><button type="submit" >Discover</button></a>
+  {% endif %}
+</div>
+
+  
+  
+
+  
+
+
+<script >
+     $(document).ready(function () {
+           $("#games").autocomplete(
+      
+    {
+        source: async function(request, response) {
+            let data = await fetch(`https://www.gofetch.in/autocomplete?query=${request.term}`)
+                .then(results => results.json())
+                .then(results => results.map(result => {
+                    return { label: result, value: result };
+                }));
+            response(data);
+        },
+        minLength: 3,
+        select: function(event, ui, response) {
+            
+                
+            window.open(`https://www.gofetch.in/search?game=${ui.item.value}`, "_self");
+                
+        }
+    });
+});
+        
+        
+                
+    
+
+</script>
+        
+         
+        
+       
+</div> 
+
+<div class="row text-center lg-margin-bottom" style="margin: auto">
+            
+  <!-- <br>
+  <br> -->
+  Connect with us on: 
+  <a href="https://twitter.com/fetchmlt" class="fa fa-twitter"></a>
+  
+
+  <a href="https://www.instagram.com/fetchmlt/" class="fa fa-instagram"></a>
+
+  <a href="https://www.linkedin.com/company/fetchmlt" class="fa fa-linkedin"></a>
+
+  <a href="https://github.com/ViratGSingh/snakeeyes" class="fa fa-github"></a>
+  <a href="mailto:fetchmlt@gmail.com" class="fa fa-envelope"></a>
+
+
+</div>
+
+{% endblock %}

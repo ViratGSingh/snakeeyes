@@ -126,7 +126,7 @@ def signup():
 
         if login_user(u):
             flash('Awesome, thanks for signing up!', 'success')
-            return redirect(url_for('user.welcome'))
+            return render_template('user/home.html')
 
     return render_template('user/signup.html', form=form)
 
