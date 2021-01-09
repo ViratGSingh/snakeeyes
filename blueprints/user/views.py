@@ -71,7 +71,7 @@ def login():
 def logout():
     logout_user()
     flash('You have been logged out.', 'success')
-    return redirect(url_for('user.login'))
+    return redirect(url_for('page.start'))
 
 
 @user.route('/account/begin_password_reset', methods=['GET', 'POST'])
