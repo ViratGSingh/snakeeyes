@@ -150,7 +150,7 @@ def welcome():
     return render_template('user/welcome.html', form=form)
 
 
-@user.route('/settings')
+@user.route('/wishlist')
 @login_required
 def settings():
     return render_template('user/settings.html')
