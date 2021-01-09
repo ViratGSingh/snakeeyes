@@ -164,8 +164,11 @@
         <br> -->
         <p class="footer-links" style="float:left;font-size:15px;padding: 15px;">
           <a href="/" style="font-size: 30px">Home</a>
-          ·
-          <a href="#" style="font-size: 30px">Trending</a>
+          {% if current_user.is_authenticated %}
+          <a href="/discover" style="font-size: 15px">Discover</a>
+          {% else %}
+          <a href="/signup" style="font-size: 15px">Discover</a>
+          {% endif %}
          
         
         </p>
