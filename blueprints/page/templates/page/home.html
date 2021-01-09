@@ -67,17 +67,24 @@
     </div> 
     <br>
     
-      <!-- <button type="submit"  style="margin-right: 16px" >More Like This</button> -->
-      <!-- <button type="submit"> Feeling Lucky?</button> -->
+      
       
     
     
     
 </form>
+<div class="row text-center lg-margin-bottom">
+  {% if current_user.is_authenticated %}
+      <button type="submit"  style="margin-right: 16px" >More Like This</button> 
+      <button type="submit" href="/discover">Discover</button>
+  {% else %}
+      <button type="submit"  style="margin-right: 16px" >More Like This</button> 
+      <button type="submit" href="/signup">Discover</button>
+</div>
 
   
   
-<button type="submit"  style="margin-right: 16px" >More Like This</button>
+
   
 
 

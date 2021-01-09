@@ -24,25 +24,25 @@
             
             <li>
               <a href="/">
-                <span class="label label-primary">Home</span>
+                Home
               </a>
             </li>
             <li>
               <a href="/discover">
-                <span class="label label-primary">Discover</span>
+                Discover
               </a>
             </li>
             
             {% if current_user.is_authenticated %}
             <li>
               <a href="/logout">
-                <span class="label label-primary">Logout</span>
+               Logout
               </a>
             </li>
             {% else %}
             <li>
               <a href="/login">
-                <span class="label label-primary">Login</span>
+                Login
               </a>
             </li>
             {% endif %}
