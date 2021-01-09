@@ -78,7 +78,7 @@ def discover():
                         sgames=sgames["items"]
                         sgames=sgames["items"]
                         name=request.args.get("recommend")
-                        duser=db.details.find_one({"user":current_user.email})
+                        duser=request.args.get("details")
                         if name:
                                 user=db.mlt.find_one({"user":current_user.email})
                                 if user:
@@ -119,7 +119,7 @@ def discover():
                                     name=request.args.get("details")
                                     game=db.games.find_one({"name":name})
                                     games=user["games"]+[name]
-                                    tags=user["tags"]+[",".join(game["tags"])]
+                                    tags=user["tags"]+[game["tags"]]
                                     rating_codes=user["rating_codes"]+[game["rating_code"]]
                                     db.details.update(
                                                     { "user": current_user.email },
@@ -141,7 +141,7 @@ def discover():
                                     db.details.insert_one({"user":current_user.email
                                                         ,"games":[game["name"]]
                                                     
-                                                        ,"tags":[",".join(game["tags"])]
+                                                        ,"tags":[game["tags"]]
                                                         ,"count":0
                                                         ,"rating_codes":[game["rating_code"]]})
                         else:
