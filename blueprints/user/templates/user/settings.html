@@ -1,100 +1,53 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}Account settings{% endblock %}
+{% block title %}Wishlist{% endblock %}
 
 {% block body %}
-  <div class="row">
-    <div class="col-md-5">
-      <h2>Settings</h2>
-      <h4 class="text-muted margin-bottom">{{ current_user.email }}</h4>
+<div class="row" style="padding: 15px;">
+<h2>Wishlist</h2>
+</div>
+<!-- {% for game in games %}
+            
+<div class="row" style="padding: 15px;">
 
-      <div class="list-group">
-        <a href="{{ url_for('user.update_credentials') }}"
-           class="list-group-item">
-          Update email and password
-        </a>
-        <a href="{{ url_for('user.update_locale') }}"
-           class="list-group-item">
-          Update language
-        </a>
-        {% if current_user.username %}
-          <span class="list-group-item quarter-faded text-muted">
-            Your username is
-            <strong>{{ current_user.username }}</strong>
-          </span>
-        {% else %}
-          <a href="{{ url_for('user.welcome') }}"
-             class="list-group-item">
-            Pick a username
-          </a>
-        {% endif %}
-      </div>
-
-      <h2>Betting</h2>
-      <div class="list-group">
-        <a href="#coming-soon" class="list-group-item">
-          Betting history
-        </a>
-        <span class="list-group-item quarter-faded text-warning">
-          You have
-          <strong>{{ current_user.coins }}</strong> coins
-        </span>
-      </div>
-      <a href="#coming-soon"
-         class="btn btn-primary">Buy more coins</a>
+    <div class="card-body">
+      <img src="{{ game[5] }}" width="300" height="200" style="padding: 5px; float: left;"/>
     </div>
-    <div class="col-md-5 col-md-push-1 col-md-offset-1">
-      {% if current_user.subscription %}
-        <h2>{{ current_user.subscription.plan | title }}
-          subscription</h2>
-        <h4 class="text-muted margin-bottom">
-          {{ current_user.credit_card.brand }}
-          ****{{ current_user.credit_card.last4 }}
-          ({{ current_user.credit_card.exp_date.strftime('%m/%Y') }})
-        </h4>
+    <h3 class="card-title" id="game" >{{ game[1] }}</h3>
+   
+    
+    <span>
+      <span style="font-size: large;">Developer: </span>
+      <span style="font-size: larger;">{{game[2] }}</span> 
+    </span>
+    <br>
+    
+    <span>
+      <span style="font-size: large;">Date: </span>
+      <span style="font-size: larger;">{{game[3] }}</span> 
+    </span>
+    <br>
+    <span>
+      <span style="font-size: large;">Top Tags: </span>
+      <span style="font-size: larger;">{{game[4] }}</span> 
+    </span>
+    <br>
+    <span>
+      <span style="font-size: large;">Rating: </span>
+      <span style="font-size: larger;">{{game[8] }}</span> 
+    </span>
+    <br>
+    
+    <form action="/game">
+      <button type="submit" name="recommend" value="{{ game[1] }}">More Like This</button>
+      <button style="float: inline-end;" type="submit" name="details" value="{{ game[1] }}">More Details</button>
+        
+      
+      
+    </form> 
+</div>
+    
+ 
 
-        <div class="list-group">
-          <a class="list-group-item"
-             href="#coming-soon">
-            Update payment info
-          </a>
-          <a class="list-group-item"
-             href="#coming-soon">
-            Billing details
-          </a>
-          <a class="list-group-item"
-             href="#coming-soon">
-            Change plan
-          </a>
-          <a class="list-group-item"
-             href="#coming-soon">
-            <span class="text-muted">Cancel subscription</span>
-          </a>
-        </div>
-      {% else %}
-        <h2>Subscribe today</h2>
-        <h4 class="text-muted">
-          Hey buddy, why aren't you subscribed?
-        </h4>
-
-        <p>
-          Now that you've created an account, wouldn't it be unbelievably
-          amazing to unlock everything by becoming a subscriber today?
-        </p>
-        <a href="#coming-soon"
-           class="btn btn-primary">Learn more</a>
-
-        <hr/>
-        {% if current_user.invoices %}
-          <h3>Previous subscription info</h3>
-          <div class="list-group">
-            <a class="list-group-item"
-              href="#coming-soon">
-              Billing details
-            </a>
-          </div>
-        {% endif %}
-      {% endif %}
-    </div>
-  </div>
+{% endfor %} -->
 {% endblock %}
