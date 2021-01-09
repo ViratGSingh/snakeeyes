@@ -19,7 +19,7 @@
   
   
   </style>
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
+<!-- <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white;">
   
   <ul>
   {% if current_user.is_authenticated %}
@@ -30,7 +30,7 @@
      <li style="float: left;"><a href="/signup"><button type="submit">Discover</button></a></li>
   {% endif %}
   </ul>
-</nav> 
+</nav>  -->
 <div class="row text-center lg-margin-bottom">
     
   <h1></h1>
@@ -75,10 +75,10 @@
 </form>
 <div class="row text-center lg-margin-bottom">
   {% if current_user.is_authenticated %}
-      
+      <a href="/logout"><button type="submit" >Logout</button></a>
       <a href="/discover"><button type="submit" >Discover</button></a>
   {% else %}
-   
+       <a href="/login"><button type="submit" >Login</button></a>
       <a href="/signup"><button type="submit" >Discover</button></a>
   {% endif %}
 </div>
