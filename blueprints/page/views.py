@@ -337,58 +337,7 @@ def search():
         detail.append(",".join(tpl))
         return render_template('page/details.html',detail=detail)
         
-@page.route('/addtowishlist')
-def addtowishlist():
-    if current_user.is_authenticated:
-        user=db.wishlist.find_one({"user":current_user.email})
-        game=request.args.get("wishlist")
-        if user:
-                games=user["games"]+[game]
-                details=db.games.find_one({"name":game})
-                t=details["tags"]
-                rc=details["rating_code"]
-                tags=user["tags"]+[t]
-                rating_codes=user["rating_codes"]+[rc]
-                user=db.wishlist.update(
-                                    { "user": current_user.email },
-                                    {
-                                        "$inc": { "count": 1 },
-                                        "$set": {
-                                                    "tags": tags,
-                                                    "games": games,
-                                                    "rating_codes": rating_codes,
-                                                    
-                                        }
-                                        
-                                        
-                                    }
-                                    )
-        else:    
-                details=db.games.find_one({"name":game})
-                t=details["tags"]
-                rc=details["rating_code"]
-                tags=[t]
-                rating_codes=[rc]
-                db.wishlist.insert_one(
-                    {
-                        "user":current_user.email,
-                        "games":[game],
-                        "count":0,
-                        "tags":[tags],
-                        "rating_code":[rc]
-                    })
-    else:
-        pass
-    
 
-@page.route('/wishlist')
-def wishlist():
-    games=db.wishlist.find_one({"user":current_user.email})
-    if games:
-        games=games["games"]
-        return render_template('page/wishlist.html',games=games)
-    else:
-        return render_template('page/signup.html',games=games)
 
 
                 
