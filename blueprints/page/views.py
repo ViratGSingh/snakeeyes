@@ -77,9 +77,6 @@ def discover():
                 if sgames:
                         sgames=sgames["items"]
                         sgames=sgames["items"]
-                        
-                        
-                
                         return render_template('page/search.html', 
                                     games=sgames)
 
