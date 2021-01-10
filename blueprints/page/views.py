@@ -102,7 +102,7 @@ def discover():
                                                         
                                                     }
                                                     )
-                                 elif user["count"]==19:
+                                elif user["count"]==19:
                     
                                     req=db.recom.find_one({"Key": name})
                                     name=req["Autocomplete"]
