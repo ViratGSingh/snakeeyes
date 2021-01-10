@@ -15,6 +15,6 @@ wtforms_alchemy==0.17.0
 psycopg2-binary==2.8.6
 pytz==2020.4
 numpy== 1.13.3
-pandas==1.2.0 
+pandas==1.1.5
 python==3.7.1 
 scikit-learn==0.24.0 
