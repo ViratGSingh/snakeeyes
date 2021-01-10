@@ -107,9 +107,9 @@ def password_reset():
 
         if login_user(u):
             flash('Your password has been reset.', 'success')
-            return redirect(url_for('user.settings'))
+            return render_template('user/home.html')
 
-    return render_template('user/home.html')
+    return render_template('user/password_reset.html', form=form)
 
 
 @user.route('/signup', methods=['GET', 'POST'])
@@ -126,7 +126,7 @@ def signup():
 
         if login_user(u):
             flash('Awesome, thanks for signing up!', 'success')
-            return render_template(url_for('.start'))
+            return render_template('user/home.html')
 
     return render_template('user/signup.html', form=form)
 
