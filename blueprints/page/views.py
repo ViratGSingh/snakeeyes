@@ -81,7 +81,7 @@ def discover():
                         duser=request.args.get("details")
                         if name:
                                 user=db.mlt.find_one({"user":current_user.email})
-                                if user:
+                                if user["count"]<19:
                                     user=db.mlt.find_one({"user":current_user.email})
                                     
                                     game=db.games.find_one({"name":name})
@@ -102,6 +102,29 @@ def discover():
                                                         
                                                     }
                                                     )
+                                 elif user["count"]==19:
+                    
+                                    req=db.recom.find_one({"Key": name})
+                                    name=req["Autocomplete"]
+                                    games=[name]
+                                    game=db.games.find_one({"name":name})
+                                    tags=[",".join(game["tags"])]
+                                    rating_codes=[game["rating_code"]]
+                                    db.mlt.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    "count":1
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
                                 else:
                                     name=request.args.get("recommend")
                                     game=db.games.find_one({"name":name})
@@ -115,7 +138,7 @@ def discover():
                         
                         elif duser:
                                 user=db.details.find_one({"user":current_user.email})
-                                if user:
+                                if user["count"]<19:
                                     name=request.args.get("details")
                                     game=db.games.find_one({"name":name})
                                     games=user["games"]+[name]
@@ -129,6 +152,29 @@ def discover():
                                                                     "tags": tags,
                                                                     "games": games,
                                                                     "rating_codes": rating_codes,
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
+                                 elif user["count"]==19:
+                                    name=request.args.get("details")
+                                    req=db.recom.find_one({"Key": name})
+                                    name=req["Autocomplete"]
+                                    games=[name]
+                                    game=db.games.find_one({"name":name})
+                                    tags=[",".join(game["tags"])]
+                                    rating_codes=[game["rating_code"]]
+                                    db.details.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    "count":1
                                                                     
                                                         }
                                                         
@@ -181,7 +227,7 @@ def find():
         if current_user.is_authenticated:
                 
                 user=db.search.find_one({"user":current_user.email})
-                if user:
+                if user["count"]<19:
                     
                     user=db.search.find_one({"user":current_user.email})
                     
@@ -261,7 +307,7 @@ def search():
             if current_user.is_authenticated:
                 
                 user=db.mlt.find_one({"user":current_user.email})
-                if user:
+                if user["count"]<19:
                     user=db.mlt.find_one({"user":current_user.email})
                     name=request.args.get("recommend")
                     game=db.games.find_one({"name":name})
@@ -333,7 +379,7 @@ def search():
         if current_user.is_authenticated:
                 
                 user=db.details.find_one({"user":current_user.email})
-                if user:
+                if user["count"]<19:
                     user=db.details.find_one({"user":current_user.email})
                     name=request.args.get("details")
                     game=db.games.find_one({"name":name})
