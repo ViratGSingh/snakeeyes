@@ -401,8 +401,7 @@ def search():
                                     )
                 elif user["count"]>=19:
                     name=request.args.get("details")
-                    req=db.recom.find_one({"Key": name})
-                    name=req["Autocomplete"]
+                    
                     games=[name]
                     game=db.games.find_one({"name":name})
                     tags=[",".join(game["tags"])]
