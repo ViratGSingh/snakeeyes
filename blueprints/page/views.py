@@ -81,7 +81,7 @@ def discover():
                                     games=sgames)
 
                 else:
-                        return render_template('page/home.html')                   
+                        return render_template('page/search_more.html')                   
         else:
                 return render_template('page/home.html')
         
