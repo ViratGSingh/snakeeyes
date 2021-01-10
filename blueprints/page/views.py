@@ -205,6 +205,30 @@ def find():
                                         
                                     }
                                     )
+                elif user["count"]==19:
+                    
+                    req=db.recom.find_one({"Key": name})
+                    name=req["Autocomplete"]
+                    games=[name]
+                    game=db.games.find_one({"name":name})
+                    tags=[",".join(game["tags"])]
+                    rating_codes=[game["rating_code"]]
+                    db.search.update(
+                                    { "user": current_user.email },
+                                    {
+                                        
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    "count":1
+                                                    
+                                        }
+                                        
+                                        
+                                    }
+                                    )
+
                 else:
                     
                     req=db.recom.find_one({"Key": name})
@@ -258,6 +282,29 @@ def search():
                                         
                                     }
                                     )
+                elif user["count"]==19:
+                    name=request.args.get("recommend")
+                    req=db.recom.find_one({"Key": name})
+                    name=req["Autocomplete"]
+                    games=[name]
+                    game=db.games.find_one({"name":name})
+                    tags=[",".join(game["tags"])]
+                    rating_codes=[game["rating_code"]]
+                    db.mlt.update(
+                                    { "user": current_user.email },
+                                    {
+                                        
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    "count":1
+                                                    
+                                        }
+                                        
+                                        
+                                    }
+                                    )
                 else:
                     name=request.args.get("recommend")
                     game=db.games.find_one({"name":name})
@@ -301,6 +348,29 @@ def search():
                                                     "tags": tags,
                                                     "games": games,
                                                     "rating_codes": rating_codes,
+                                                    
+                                        }
+                                        
+                                        
+                                    }
+                                    )
+                elif user["count"]==19:
+                    name=request.args.get("details")
+                    req=db.recom.find_one({"Key": name})
+                    name=req["Autocomplete"]
+                    games=[name]
+                    game=db.games.find_one({"name":name})
+                    tags=[",".join(game["tags"])]
+                    rating_codes=[game["rating_code"]]
+                    db.details.update(
+                                    { "user": current_user.email },
+                                    {
+                                        
+                                        "$set": {
+                                                    "tags": tags,
+                                                    "games": games,
+                                                    "rating_codes": rating_codes,
+                                                    "count":1
                                                     
                                         }
                                         
