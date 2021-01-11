@@ -50,7 +50,8 @@ def auto():
             { "$limit" : 5 }
 
         ])
-    return dumps(result)    
+    info=dumps(result)
+    return info["Autocomplete"]    
        
     
     
