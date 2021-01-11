@@ -5,7 +5,7 @@ page = Blueprint('page', __name__, template_folder='templates')
 import pymongo
 import json
 from flask_login import current_user
-
+from bson.json_util import dumps
 
 
 
@@ -50,10 +50,8 @@ def auto():
             { "$limit" : 5 }
 
         ])
-    l=[]    
-    for i in result:
-      l.append(i["Autocomplete"])
-    return json.dumps(l)   
+    return dumps(result)    
+       
     
     
 @page.route('/',  methods=["GET","POST"])
