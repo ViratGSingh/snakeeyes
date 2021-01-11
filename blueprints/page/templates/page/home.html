@@ -98,7 +98,7 @@
             let data = await fetch(`https://www.gofetch.in/autocomplete?query=${request.term}`)
                 .then(results => results.json())
                 .then(results => results.map(result => {
-                    return { label: result.Autocomplete, value: result.Autocomplete };
+                    return { label: result, value: result };
                 }));
             response(data);
         },
