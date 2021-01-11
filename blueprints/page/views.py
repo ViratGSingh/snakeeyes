@@ -36,7 +36,7 @@ def auto():
 
                         "fuzzy": {
 
-                            "maxEdits": 3,
+                            "maxEdits": 2,
 
                             "prefixLength": 1
 
