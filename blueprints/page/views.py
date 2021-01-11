@@ -36,9 +36,9 @@ def auto():
 
                         "fuzzy": {
 
-                            "maxEdits": 2,
+                            "maxEdits": 3,
 
-                            "prefixLength": 3
+                            "prefixLength": 1
 
                         }
 
@@ -47,7 +47,7 @@ def auto():
                 }
 
             },
-            { "$limit" : 5 }
+            { "$limit" : 10 }
 
         ])
     l=[]    
