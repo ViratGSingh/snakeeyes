@@ -38,7 +38,7 @@ def auto():
 
                             "maxEdits": 2,
 
-                            "prefixLength": 5
+                            "prefixLength": 3
 
                         }
 
@@ -47,7 +47,7 @@ def auto():
                 }
 
             },
-            { "$limit" : 10 }
+            { "$limit" : 5 }
 
         ])
     l=[]    
