@@ -47,7 +47,14 @@ def auto():
                 }
 
             },
-            { "$limit" : 5 }
+            { "$limit" : 5 },
+            {
+                "$project": {
+                "Key":0,
+                "_id":0,
+                "Autocomplete": 1
+                }
+            }
 
         ])
     return dumps(result)    
