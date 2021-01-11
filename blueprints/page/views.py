@@ -38,7 +38,7 @@ def auto():
 
                             "maxEdits": 2,
 
-                            "prefixLength": 1
+                            "prefixLength": 5
 
                         }
 
