@@ -105,80 +105,84 @@ def find():
         name=name.replace(" ","_")
         name=name.replace("$","&")
         req=db.recom.find({"Key": name})
-        for i in req:
-            sgames=i[name]  
-        
-        if current_user.is_authenticated:
+        if req:
+                for i in req:
+                    sgames=i[name]  
                 
-                user=db.search.find_one({"user":current_user.email})
-                if user:
-                  
-                        if user["count"]<19:
-                            
-                            user=db.search.find_one({"user":current_user.email})
-                            
-                            req=db.recom.find_one({"Key": name})
-                            name=req["Autocomplete"]
-                            games=user["games"]+[name]
-                            game=db.games.find_one({"name":name})
-                            tags=user["tags"]+[",".join(game["tags"])]
-                            rating_codes=user["rating_codes"]+[game["rating_code"]]
-                            db.search.update(
-                                            { "user": current_user.email },
-                                            {
-                                                "$inc": { "count": 1 },
-                                                "$set": {
-                                                            "tags": tags,
-                                                            "games": games,
-                                                            "rating_codes": rating_codes,
-                                                            
-                                                }
-                                                
-                                                
-                                            }
-                                            )
-                        elif user["count"]>=19:
-                            
-                            req=db.recom.find_one({"Key": name})
-                            name=req["Autocomplete"]
-                            games=[name]
-                            game=db.games.find_one({"name":name})
-                            tags=[",".join(game["tags"])]
-                            rating_codes=[game["rating_code"]]
-                            db.search.update(
-                                            { "user": current_user.email },
-                                            {
-                                                
-                                                "$set": {
-                                                            "tags": tags,
-                                                            "games": games,
-                                                            "rating_codes": rating_codes,
-                                                            "count":1
-                                                            
-                                                }
-                                                
-                                                
-                                            }
-                                            )
-                        else:
-                            pass
+                if current_user.is_authenticated:
+                        
+                        user=db.search.find_one({"user":current_user.email})
+                        if user:
+                        
+                                if user["count"]<19:
+                                    
+                                    user=db.search.find_one({"user":current_user.email})
+                                    
+                                    req=db.recom.find_one({"Key": name})
+                                    name=req["Autocomplete"]
+                                    games=user["games"]+[name]
+                                    game=db.games.find_one({"name":name})
+                                    tags=user["tags"]+[",".join(game["tags"])]
+                                    rating_codes=user["rating_codes"]+[game["rating_code"]]
+                                    db.search.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        "$inc": { "count": 1 },
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
+                                elif user["count"]>=19:
+                                    
+                                    req=db.recom.find_one({"Key": name})
+                                    name=req["Autocomplete"]
+                                    games=[name]
+                                    game=db.games.find_one({"name":name})
+                                    tags=[",".join(game["tags"])]
+                                    rating_codes=[game["rating_code"]]
+                                    db.search.update(
+                                                    { "user": current_user.email },
+                                                    {
+                                                        
+                                                        "$set": {
+                                                                    "tags": tags,
+                                                                    "games": games,
+                                                                    "rating_codes": rating_codes,
+                                                                    "count":1
+                                                                    
+                                                        }
+                                                        
+                                                        
+                                                    }
+                                                    )
+                                else:
+                                    pass
 
+                        else:
+                            
+                            req=db.recom.find_one({"Key": name})
+                            name=req["Autocomplete"]
+                            game=db.games.find_one({"name":name})
+                            db.search.insert_one({"user":current_user.email
+                                                ,"games":[game["name"]]
+                                            
+                                                ,"tags":[",".join(game["tags"])]
+                                                ,"count":0
+                                                ,"rating_codes":[game["rating_code"]]})
                 else:
-                    
-                    req=db.recom.find_one({"Key": name})
-                    name=req["Autocomplete"]
-                    game=db.games.find_one({"name":name})
-                    db.search.insert_one({"user":current_user.email
-                                        ,"games":[game["name"]]
-                                      
-                                        ,"tags":[",".join(game["tags"])]
-                                        ,"count":0
-                                        ,"rating_codes":[game["rating_code"]]})
+                        pass 
+                return render_template('page/search.html', 
+                                    games=sgames) 
         else:
-                pass 
-        return render_template('page/search.html', 
-                            games=sgames) 
-                         
+            search=request.args.get("game")
+            return render_template('page/invalid_search.html', 
+                                    search=search)                
     
     else:   
         
