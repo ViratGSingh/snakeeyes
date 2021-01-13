@@ -105,10 +105,10 @@ def find():
         name=name.replace(" ","_")
         name=name.replace("$","&")
         req=db.recom.find({"Key": name})
-        if req:
-                for i in req:
-                    sgames=i[name]  
-                
+        
+        for i in req:
+            sgames=i[name]  
+        if sgames:        
                 if current_user.is_authenticated:
                         
                         user=db.search.find_one({"user":current_user.email})
