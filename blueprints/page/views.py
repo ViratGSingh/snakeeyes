@@ -105,10 +105,10 @@ def find():
         name=name.replace(" ","_")
         name=name.replace("$","&")
         req=db.recom.find({"Key": name})
-        
-        for i in req:
-            sgames=i[name]  
-        if sgames:        
+        try:
+                for i in req:
+                    sgames=i[name]  
+                
                 if current_user.is_authenticated:
                         
                         user=db.search.find_one({"user":current_user.email})
@@ -179,7 +179,7 @@ def find():
                         pass 
                 return render_template('page/search.html', 
                                     games=sgames) 
-        else:
+        except:
             search=request.args.get("game")
             return render_template('page/invalid_search.html', 
                                     search=search)                
