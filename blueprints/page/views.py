@@ -21,7 +21,7 @@ def beforeRequest():
 
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
-    l=["fat","kid"]
+    l=["fat","kid","burn","cute","love"]
     return json.dumps(l)   
     
     
