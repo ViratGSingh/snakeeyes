@@ -21,7 +21,38 @@ def beforeRequest():
 
 @page.route('/autocomplete',  methods=["GET","POST"])
 def auto():
-    l=["fat","kid","burn","cute","love"]
+    game = request.args.get('query')
+    result = db.recom.aggregate([
+
+            {
+
+                "$search": {
+
+                    "autocomplete": {
+
+                        "query": game,
+
+                        "path": "Autocomplete",
+
+                        "fuzzy": {
+
+                            "maxEdits": 2,
+
+                            "prefixLength": 5
+
+                        }
+
+                    }
+
+                }
+
+            },
+            { "$limit" : 5 }
+
+        ])
+    l=[]    
+    for i in result:
+      l.append(i["Autocomplete"])
     return json.dumps(l)   
     
     
